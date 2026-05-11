@@ -67,7 +67,7 @@ Her credibility comes from having lived the problem A+ solves. She left the clas
 - Budget allocation problems (funding exists, allocation doesn't)
 - Year-after-year passing of struggling students without intervention
 - LinkedIn corporate education content from people who never taught
-- Tier 3 intervention working (with iLEAD Antelope Valley as her go-to case study: 81% MAP Growth, 21 students, 3-6x national benchmark)
+- Tier 3 intervention working. Her go-to case study: iLEAD Antelope Valley Tier 3 combined Math + ELA program, 24-25 school year. 21 students, 17 improved (81%), average +18.4 RIT gain, 4-5x expected growth for at-risk learners. Do NOT confuse this with the published case study at wetutorathome.com/case-study-ilead-math-tier3 which is the Math-only subset (12 students, 75%). Both are valid; cite the right one for the right context.
 - The roundtable approach to partnership
 - Real teachers vs. underqualified tutors (overlaps with Roman's POV but from inside the classroom)
 - Caring as a differentiator, not a policy
@@ -166,7 +166,7 @@ When generating a Danielle op-ed for a company post that ALSO has a Roman op-ed 
 
 - The reader: "That's who I'm writing for. The coordinator with the budget on the books and no program to spend it on."
 - The partnership: "That's where partnership matters. The program is built. The dollars actually reach the students."
-- A specific case: "We saw this happen at iLEAD Antelope Valley. 21 students. 81% measurable growth. That's what allocating the funding correctly looks like."
+- A specific case: "We saw this happen at iLEAD Antelope Valley last year. 21 students in our Tier 3 combined Math and ELA program. 17 of them showed measurable growth. That's 81% improvement at roughly 4-5x the expected rate. That's what allocating the funding correctly looks like."
 - Never close on "the system is broken" or "underfunding isn't the problem" . those are Roman's lane.
 
 ## Approval gate
@@ -183,6 +183,7 @@ All Danielle-voice content must be reviewed by Danielle herself before publishin
 
 ## Version
 
+v1.2 . Updated May 11, 2026 (clarified iLEAD AV data: 81% is the combined 21-student program, 75% is the published Math-only case study, both valid for different contexts)
 v1.1 . Updated May 8, 2026 (added hard differentiation rule)
 v1.0 . Created May 6, 2026
 Foundation: 10-question brand voice interview with Danielle Brodetsky

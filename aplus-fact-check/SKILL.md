@@ -103,7 +103,25 @@ For any quoted statement:
 
 For any claim about A+ outcomes, partnerships, or methods:
 
-1. **Verify against the published case study at wetutorathome.com/case-study-ilead-math-tier3** for iLEAD Math Tier 3 claims (12 students, +20.8 percentile gain, +18.7 RIT, 17 hours/student, 81% positive growth, 9 of 12 with positive growth)
+1. **Verify A+ outcome data against the correct source for each cut.** There are multiple legitimate slices of the iLEAD AV Tier 3 program data and they MUST be cited correctly. The fact-check skill caught a real failure mode on May 11, 2026 where 81% was cited against the wrong source.
+
+**iLEAD AV Tier 3 data . correct attributions:**
+
+| Stat | Sample | Source / when to use |
+|---|---|---|
+| **75% improvement (9 of 12)** | iLEAD Math Tier 3 ONLY | Published case study at wetutorathome.com/case-study-ilead-math-tier3. Use ONLY when citing the public URL. Other figures: +20.8 percentile gain, +18.7 RIT, 17 hours/student |
+| **81% improvement (17 of 21)** | iLEAD AV Tier 3 COMBINED Math + ELA, 24-25 school year | Internal pitch deck data. Use when describing the full program scope, +18.4 avg RIT gain, 4-5x expected growth |
+| **86% improvement (36 of 42)** | iLEAD AV broader Level Up cohort, 51 enrolled / 42 with complete data | Internal data, larger sample, +12.5 avg RIT gain |
+| **77% improvement (10 of 13)** | iLEAD AV Math portion only | Math-specific subset of the 21-student combined, +17.4 avg RIT gain |
+| **87.5% improvement (7 of 8)** | iLEAD AV ELA portion only | ELA-specific subset of the 21-student combined, +20.1 avg RIT gain |
+
+**Standout individual cases (anonymize when published externally):**
+- Tyree Collins Jr. (Grade 8): +78 RIT, 9th to 99th percentile (Math)
+- Lorenzo Abonce (Grade 4): +75 RIT, 1st to 34th percentile
+- Maritza Phillips (Grade 6): +55 RIT, 16th to 96th percentile
+- Evelyn Aguilar (Grade 2): +43 RIT, 11th to 82nd percentile
+
+**Rule of thumb:** If the content cites a public URL (the published case study), use the 75% / 12 students figure. If the content cites internal pitch data, use the 81% / 21 students figure. Mixing them is the failure mode.
 2. **Verify against other A+ published case studies** for other cohort claims
 3. **Flag any claim that doesn't appear in published or internally documented sources** . A+ should not invent outcome data
 4. **Verify partner relationships** against target-schools.md before claiming a school as a partner
@@ -285,5 +303,6 @@ ACTION TAKEN: [Returned for revision / Skill updated / Pattern flagged]
 
 ## Version
 
+v1.1 . Updated May 11, 2026 (added correct attribution table for iLEAD AV data after first real run flagged 81% misattribution against published case study URL)
 v1.0 . Created May 11, 2026
-Foundation: SB 414 incident on May 11, 2026 surfaced the factual accuracy gap that brand-check cannot catch. Built specifically to prevent shipping content with wrong bill statuses, fabricated statistics, or invented A+ outcome data.
+Foundation: SB 414 incident on May 11, 2026 surfaced the factual accuracy gap that brand-check cannot catch. Built specifically to prevent shipping content with wrong bill statuses, fabricated statistics, or invented A+ outcome data. iLEAD AV data correction added same day after first real run validated the skill.
