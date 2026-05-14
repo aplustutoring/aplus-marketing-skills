@@ -40,7 +40,9 @@ Content fails brand-check if ANY of the following are present.
 
 2. **Banned phrase: "all students."** This phrase is explicitly forbidden across all A+ content. It is bland, performative, and signals corporate fake-care.
 
-3. **AI-detection vocabulary** (any of these words):
+3. **AI-detection vocabulary** (any of these words). Expanded in v1.1 with 13 additional patterns sourced from ivankuznetsov/claude-seo humanize work and the Wikipedia AI Cleanup guidelines:
+
+   *Original v1.0 list:*
    - leverage / leveraging / leveraged
    - delve / delving / delved
    - harness / harnessing / harnessed
@@ -53,6 +55,22 @@ Content fails brand-check if ANY of the following are present.
    - revolutionize / revolutionizing / revolutionized
    - empower / empowering / empowered (when used as corporate fluff)
    - unlock / unlocking / unlocked (when paired with "potential")
+
+   *Added in v1.1:*
+   - additionally
+   - landscape (especially "today's landscape" / "evolving landscape")
+   - testament (especially "a testament to")
+   - pivotal
+   - crucial
+   - myriad
+   - navigating (when used metaphorically: "navigating challenges")
+   - robust
+   - underscore / underscores (when used as "underscores the importance of")
+   - noteworthy
+   - moreover
+   - furthermore
+
+   These thirteen words are the most reliable AI fingerprints in 2026 LLM output. They are not banned in every context (medical writing may legitimately use "crucial" or "robust"), but in A+'s B2B and B2C content they signal model-generated prose and erode trust. When flagged, the writer should pick a more specific verb or noun rather than substitute another generic intensifier.
 
 4. **Profanity.** Any profanity in published content. Roman uses it in conversation; it never appears in social posts. Hard rule.
 
@@ -67,6 +85,27 @@ Content fails brand-check if ANY of the following are present.
    - "Move the needle" used by anyone other than Danielle's voice (it's her phrase)
 
 6. **Rule-of-three lists.** Three short parallel phrases in a row are an AI fingerprint (e.g., "faster, better, stronger" or "we listen, we adapt, we deliver"). If a rule-of-three appears, restructure.
+
+7. **Sentence pattern detection (new in v1.1).** These openers and connectives are AI fingerprints regardless of the words around them. Flag any of:
+   - "It's important to note that..."
+   - "In conclusion..."
+   - "When it comes to..."
+   - "In today's [adjective] landscape/world/environment..." (any adjective)
+   - "Let's dive into..."
+   - "In an era where..."
+   - "In a world where..."
+
+   Recommended fixes: drop the opener entirely and lead with the substantive claim. "It's important to note that 41 states are codifying HIT" should become "41 states are codifying HIT."
+
+8. **Adverb-adjective inflation (new in v1.1).** Intensifier-adverbs paired with adjectives are an AI fingerprint. The adjective alone almost always carries the meaning; the adverb is padding that signals model-generated prose. Flag any of:
+   - "absolutely critical"
+   - "extremely important"
+   - "incredibly valuable"
+   - "truly remarkable"
+   - "vastly superior"
+   - Pattern rule: any [intensifier adverb] + [adjective] where the adjective alone would carry the meaning. Common intensifiers to watch for: absolutely, extremely, incredibly, truly, vastly, remarkably, profoundly, immensely, exceptionally, particularly (when used as filler).
+
+   Recommended fix: delete the adverb. "Absolutely critical" becomes "critical." If the adjective alone feels weak, the issue is usually that the wrong adjective was chosen, not that an intensifier was missing.
 
 ### Voice-specific failures
 
@@ -115,6 +154,16 @@ When content is for a specific channel, check brand-kit alignment.
 - Lacks data or specifics where they're available
 - Treats school admins as prospects rather than colleagues
 - Doesn't acknowledge system-level constraints schools operate within
+
+### Blog post checks (new in v1.1)
+
+When content is tagged as a blog post (output from `aplus-blog-longform`), two additional checks apply on top of the standard checks above:
+
+1. **Primary keyword in first 100 words.** Read the `primary_keyword` value from the blog's SEO metadata block. Verify it appears in the first 100 words of body copy. If it does not appear, fail with the note: "Primary keyword '[keyword]' is missing from the first 100 words. AI Overviews and Google extract the opening to determine relevance. Move the keyword into the lead."
+
+2. **First 100 words is a standalone summary.** Read the first 100 words of body copy in isolation. Test: can a reader who reads only those 100 words answer the primary search query the post is targeting? If not, fail with the note: "Opening does not answer the primary search query as a standalone summary. AI engines and search snippets extract the opening to surface as a citation or featured snippet. Rewrite the opening to directly answer the primary query in the first 100 words."
+
+Both checks correspond to the GEO Optimization Pass that `aplus-blog-longform` v1.1 runs at draft time. Brand-check is the enforcement layer that catches drift if the GEO pass was skipped or its output was diluted during revision.
 
 ### Image / visual failures (when content includes visuals)
 
@@ -226,5 +275,8 @@ If the same writer agent fails brand-check 3 times in a row on similar issues, l
 
 ## Version
 
-v1.0 . Created May 8, 2026
+v1.1. Updated May 13, 2026
+Expanded AI fingerprint detection. Added 13 new banned words to the AI-detection vocabulary list (additionally, landscape, testament, pivotal, crucial, myriad, navigating, robust, underscore, noteworthy, moreover, furthermore). Added two new failure categories: Sentence pattern detection (catches "It's important to note that...", "In conclusion...", "Let's dive into...", and similar AI opener patterns) and Adverb-adjective inflation (catches "absolutely critical," "extremely important," and the general intensifier-adverb-plus-adjective pattern). Added two new blog-post-specific checks (primary keyword presence in first 100 words, standalone-summary test for the opening). Sources: ivankuznetsov/claude-seo humanize work and Wikipedia AI Cleanup guidelines.
+
+v1.0. Created May 8, 2026
 Foundation: Banned words list, AI fingerprint patterns, and voice rules from roman-voice v1.1 and danielle-voice v1.1
