@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-A+ Tutoring DALL-E 3 image generation utility.
+A+ Tutoring gpt-image-1 image generation utility.
 Generates branded education imagery from prompts.
 """
 import os
@@ -8,6 +8,7 @@ import sys
 import argparse
 import requests
 import json
+import base64
 from datetime import datetime
 from pathlib import Path
 from dotenv import load_dotenv
@@ -19,12 +20,16 @@ BUDGET = float(os.getenv("DALL_E_MONTHLY_BUDGET", "50.00"))
 LOG_PATH = Path(__file__).parent / "dall-e-usage.log"
 
 COSTS = {
-    ("1024x1024", "standard"): 0.040,
-    ("1024x1024", "hd"): 0.080,
-    ("1792x1024", "standard"): 0.080,
-    ("1792x1024", "hd"): 0.120,
-    ("1024x1792", "standard"): 0.080,
-    ("1024x1792", "hd"): 0.120,
+    ("1024x1024", "low"): 0.011,
+    ("1024x1024", "medium"): 0.042,
+    ("1024x1024", "high"): 0.167,
+    ("1536x1024", "low"): 0.016,
+    ("1536x1024", "medium"): 0.063,
+    ("1536x1024", "high"): 0.250,
+    ("1024x1536", "low"): 0.016,
+    ("1024x1536", "medium"): 0.063,
+    ("1024x1536", "high"): 0.250,
+    ("auto", "auto"): 0.063,
 }
 
 def get_monthly_spend():
@@ -55,7 +60,7 @@ def log_usage(prompt, size, quality, cost, output_path, success):
     with open(LOG_PATH, "a") as f:
         f.write(json.dumps(entry) + "\n")
 
-def generate(prompt, output_path, size="1792x1024", quality="standard", style="natural"):
+def generate(prompt, output_path, size="1536x1024", quality="medium"):
     if not API_KEY or API_KEY == "PLACEHOLDER_REPLACE_WITH_REAL_KEY":
         print("ERROR: OPENAI_API_KEY not set in .env", file=sys.stderr)
         return 1
@@ -74,13 +79,11 @@ def generate(prompt, output_path, size="1792x1024", quality="standard", style="n
         "Content-Type": "application/json",
     }
     payload = {
-        "model": "dall-e-3",
+        "model": "gpt-image-1",
         "prompt": prompt,
         "n": 1,
         "size": size,
         "quality": quality,
-        "style": style,
-        "response_format": "url",
     }
 
     try:
@@ -92,15 +95,13 @@ def generate(prompt, output_path, size="1792x1024", quality="standard", style="n
         )
         response.raise_for_status()
         data = response.json()
-        image_url = data["data"][0]["url"]
+        image_b64 = data["data"][0]["b64_json"]
+        image_bytes = base64.b64decode(image_b64)
 
         Path(output_path).parent.mkdir(parents=True, exist_ok=True)
 
-        img_response = requests.get(image_url, timeout=60)
-        img_response.raise_for_status()
-
         with open(output_path, "wb") as f:
-            f.write(img_response.content)
+            f.write(image_bytes)
 
         log_usage(prompt, size, quality, cost, output_path, True)
         print(f"Image saved to: {output_path}")
@@ -116,15 +117,14 @@ def generate(prompt, output_path, size="1792x1024", quality="standard", style="n
         return 1
 
 def main():
-    parser = argparse.ArgumentParser(description="Generate images via DALL-E 3 for A+ Tutoring")
-    parser.add_argument("--prompt", required=True, help="DALL-E 3 prompt")
+    parser = argparse.ArgumentParser(description="Generate images via gpt-image-1 for A+ Tutoring")
+    parser.add_argument("--prompt", required=True, help="gpt-image-1 prompt")
     parser.add_argument("--output", required=True, help="Output file path (PNG)")
-    parser.add_argument("--size", default="1792x1024", choices=["1024x1024", "1792x1024", "1024x1792"])
-    parser.add_argument("--quality", default="standard", choices=["standard", "hd"])
-    parser.add_argument("--style", default="natural", choices=["natural", "vivid"])
+    parser.add_argument("--size", default="1536x1024", choices=["1024x1024", "1536x1024", "1024x1536", "auto"])
+    parser.add_argument("--quality", default="medium", choices=["low", "medium", "high", "auto"])
     args = parser.parse_args()
 
-    return generate(args.prompt, args.output, args.size, args.quality, args.style)
+    return generate(args.prompt, args.output, args.size, args.quality)
 
 if __name__ == "__main__":
     sys.exit(main())
