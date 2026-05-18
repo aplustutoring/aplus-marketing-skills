@@ -9,3 +9,4 @@
 # Runtime usage logs (machine state, grow over time)
 scripts/hubspot-usage.log
 scripts/dall-e-usage.log
+scripts/slack-usage.log
