@@ -121,4 +121,26 @@ composite(
     logo_rgba=LOGO_2COLOR,
 )
 
+# Pull quote §2 — orange background, white variant of logo.
+composite(
+    "pull-quote-s2.png",
+    "pull-quote-s2-with-logo.png",
+    erase_box=(820, 820, 1020, 1020),
+    logo_anchor=(890, 890),
+    logo_width=100,
+    sample_xy=(20, 20),
+    logo_rgba=LOGO_WHITE,
+)
+
+# Pull quote §3 — orange background, white variant of logo.
+composite(
+    "pull-quote-s3.png",
+    "pull-quote-s3-with-logo.png",
+    erase_box=(820, 820, 1020, 1020),
+    logo_anchor=(890, 890),
+    logo_width=100,
+    sample_xy=(20, 20),
+    logo_rgba=LOGO_WHITE,
+)
+
 print("\nDone.")
