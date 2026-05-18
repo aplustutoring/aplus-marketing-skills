@@ -262,6 +262,50 @@ The first 100 words of the blog post must be liftable as a standalone summary. G
 
 Do NOT bury the lead. Do NOT open with throat-clearing ("In today's educational landscape...").
 
+## Required Internal Links and CTA
+
+Every A+ blog post must include the following links where contextually relevant. If the topic does not allow natural inclusion of a link, the agent must flag this and ask before publishing.
+
+### A+ Tutoring approved link library
+
+**Case studies** (cite both when discussing iLEAD outcomes):
+
+- https://wetutorathome.com/case-study-ilead-math-tier3 (75%, 12 students, Math Tier 3)
+- https://wetutorathome.com/results/ilead-tier-3-english (87.5%, 8 students, ELA Tier 3)
+
+**Partner school pages:**
+
+- https://wetutorathome.com/ilead-exploration (use when discussing iLEAD or homeschool charter funding)
+- https://wetutorathome.com/heartwood-charter-school (use when discussing approved vendor relationships or partner schools)
+
+**Service pages:**
+
+- https://wetutorathome.com/services (use when describing A+ operational model or Tier 2 / Tier 3 instruction)
+- https://wetutorathome.com/home-school-tutoring (use when discussing homeschool families)
+
+### Required CTA
+
+Every B2B blog post must close with a CTA linking to Danielle's booking page:
+
+`https://meetings.hubspot.com/successful/danielle-meetings-for-partnerships-programs`
+
+CTA language options (choose based on blog tone):
+
+- "Book a 30-minute conversation with Danielle"
+- "Schedule time with Danielle to discuss your school's intervention strategy"
+- "Talk to Danielle about how A+ partners with charter schools like yours"
+
+DO NOT use generic CTAs like "request a consultation" or "contact us" that point to the homepage. Always use Danielle's specific booking link.
+
+### Minimum link requirements per blog
+
+- 1 case study link minimum (both if iLEAD discussed)
+- 1 partner school page link minimum
+- 1 service page link minimum
+- 1 Danielle CTA link (required)
+
+If the blog topic genuinely does not allow natural inclusion of partner school or service links, flag this in the output and ask before finalizing.
+
 ## Quality gates
 
 Before output is delivered for approval, the agent runs these self-checks:
@@ -342,6 +386,8 @@ Each published blog post becomes:
 - Future: `aplus-blog-promotion` . skill to chop approved blog post into LinkedIn carousel, parent newsletter snippet, etc.
 
 ## Version
+
+v1.2 . Updated 2026-05-15 . Added required internal links library and Danielle booking CTA requirement. Previous versions allowed generic CTAs and incomplete internal linking which weakened both SEO and conversion.
 
 v1.1. Updated May 13, 2026
 Integrated 5 new SEO/GEO skills (sourced from aaron-he-zhu/seo-geo-claude-skills) into the blog production pipeline. Added Pre-Draft SEO Research Phase (`keyword-research`, `serp-analysis`, `content-gap-analysis` before drafting). Added GEO Optimization Pass (`geo-content-optimizer` after first draft, before metadata). Replaced static SEO metadata with `meta-tags-optimizer` A/B variants and `schema-markup-generator` JSON-LD output. Added On-Page Audit phase (`on-page-seo-auditor` with 80-score minimum). Added 3 new quality gates (SEO research check, GEO optimization check, on-page audit check). Net effect: blog posts now ship with keyword data, SERP positioning intelligence, GEO-optimized structure, JSON-LD schema, A/B title variants, and a measured on-page score, in addition to the brand-voice and fact-check layers that already existed in v1.0.
