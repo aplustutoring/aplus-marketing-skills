@@ -66,6 +66,11 @@ pull_quotes:
   - "Withholding is different from elimination. Congress appropriated the funds. The dollars exist on paper."
   - "The directors who restructured their funding mix this spring around the formula grants and state-funded layers will not feel the federal volatility the same way."
   - "Outcomes track operational design, not which federal grant code paid the bill."
+
+inline_pull_quote_images:
+  - pull-quote-s2-with-logo.png
+  - pull-quote-s3-with-logo.png
+  - pull-quote-with-logo.png
 reading_time: 7 minutes
 target_publish_date: 2026-05-20 (Wednesday AM)
 target_promotion: LinkedIn company post Wednesday PM, Roman op-ed Thursday AM, Danielle op-ed Friday AM

@@ -35,40 +35,71 @@ BLOG_ID = "12422338726"
 HUBSPOT_BASE = "https://api.hubapi.com"
 LOG_PATH = Path(__file__).parent / "hubspot-usage.log"
 
-# Pull-quote map: each entry pairs an anchor substring (in the paragraph that
-# contains the quote in the blog prose) with the image file to embed after
-# that paragraph. The anchor must be a UNIQUE substring of the target
-# paragraph so the matcher lands on the right </p> boundary.
-PULL_QUOTES = [
-    {
-        "anchor": "Withholding is different from elimination",
-        "file": "pull-quote-s2-with-logo.png",
-        "alt": (
-            "Pull quote: Withholding is different from elimination. "
-            "Congress appropriated the funds. The dollars exist on paper."
-        ),
-    },
-    {
-        "anchor": "The directors who restructured their funding mix this spring",
-        "file": "pull-quote-s3-with-logo.png",
-        "alt": (
-            "Pull quote: The directors who restructured their funding mix "
-            "this spring around the formula grants and state-funded layers "
-            "will not feel the federal volatility the same way."
-        ),
-    },
-    {
-        # The verbatim quote appears mid-sentence in the blog prose so its
-        # first letter is lowercase ("outcomes"). The graphic capitalizes it
-        # because it stands alone there.
-        "anchor": "outcomes track operational design, not which federal grant code",
-        "file": "pull-quote-with-logo.png",
-        "alt": (
-            "Pull quote: Outcomes track operational design, not which federal "
-            "grant code paid the bill."
-        ),
-    },
-]
+def parse_pull_quotes_from_meta(meta_path):
+    """Parse blog-anchor-meta.md for two parallel lists:
+    - pull_quotes: the verbatim quotes (used as alt text and to derive anchors)
+    - inline_pull_quote_images: the corresponding image filenames
+
+    Returns a list of dicts: [{"anchor": ..., "file": ..., "alt": ...}, ...]
+    Anchor matching is case-insensitive at insertion time, so a quote that
+    appears mid-sentence in the blog prose (lowercase first letter) still
+    matches a quote rendered as a standalone graphic (capitalized first
+    letter).
+    """
+    text = Path(meta_path).read_text()
+
+    def extract_list(field_name):
+        # Match `field_name:` followed by lines beginning with `  - `
+        m = re.search(rf"^{re.escape(field_name)}:\s*$", text, re.MULTILINE)
+        if not m:
+            return []
+        items = []
+        # Walk lines after the field header
+        lines = text[m.end():].split("\n")
+        for line in lines[1:]:  # skip the first empty line after the header
+            stripped = line.strip()
+            if not stripped:
+                # blank line ends the list
+                break
+            if not stripped.startswith("-"):
+                # any non-bullet line ends the list
+                break
+            item = stripped[1:].strip()
+            # strip surrounding quotes if present
+            if item.startswith('"') and item.endswith('"'):
+                item = item[1:-1]
+            items.append(item)
+        return items
+
+    quotes = extract_list("pull_quotes")
+    images = extract_list("inline_pull_quote_images")
+
+    if not quotes:
+        raise ValueError(f"No 'pull_quotes:' list found in {meta_path}")
+    if not images:
+        raise ValueError(f"No 'inline_pull_quote_images:' list found in {meta_path}")
+    if len(quotes) != len(images):
+        raise ValueError(
+            f"pull_quotes ({len(quotes)}) and inline_pull_quote_images "
+            f"({len(images)}) lists must be the same length in {meta_path}"
+        )
+
+    pieces = []
+    for quote, image in zip(quotes, images):
+        # Derive an anchor: the first 60 characters of the quote, stripped of
+        # surrounding punctuation. The case-insensitive matcher in
+        # insert_figure_after_paragraph handles capitalization differences
+        # between standalone quote (capitalized) and mid-sentence body
+        # appearance (lowercase).
+        anchor = quote.strip().strip('"').strip("'").rstrip(".,;:")
+        if len(anchor) > 60:
+            anchor = anchor[:60]
+        pieces.append({
+            "anchor": anchor,
+            "file": image,
+            "alt": f"Pull quote: {quote}",
+        })
+    return pieces
 
 
 def log(action, status, detail=""):
@@ -157,6 +188,10 @@ def insert_figure_after_paragraph(html, anchor, image_url, alt_text):
     """Find the </p> that closes the paragraph containing `anchor`, then
     insert a <figure> with the image right after it.
 
+    Matching is case-insensitive on the anchor. This handles the common case
+    where a pull-quote graphic is capitalized (standalone) but the quote
+    appears mid-sentence in the body prose with a lowercase first letter.
+
     Returns (new_html, success_bool).
     """
     figure_html = (
@@ -166,7 +201,7 @@ def insert_figure_after_paragraph(html, anchor, image_url, alt_text):
         "</figure>"
     )
 
-    pos = html.find(anchor)
+    pos = html.lower().find(anchor.lower())
     if pos == -1:
         return html, False
     end_pos = html.find("</p>", pos)
@@ -212,13 +247,28 @@ def main():
         print(f"ERROR: bundle dir not found: {bundle}", file=sys.stderr)
         return 1
 
+    meta_path = bundle / "blog-anchor-meta.md"
+    if not meta_path.exists():
+        print(f"ERROR: meta file not found: {meta_path}", file=sys.stderr)
+        return 1
+
+    # Parse the pull-quote definitions from the meta file
+    try:
+        pull_quotes = parse_pull_quotes_from_meta(meta_path)
+    except ValueError as e:
+        print(f"ERROR parsing meta: {e}", file=sys.stderr)
+        return 1
+    print(f"Loaded {len(pull_quotes)} pull-quote definitions from meta:")
+    for pq in pull_quotes:
+        print(f"  - file={pq['file']}  anchor='{pq['anchor'][:50]}...'")
+
     # Verify the pull-quote image files exist locally
-    for pq in PULL_QUOTES:
+    for pq in pull_quotes:
         p = bundle / "graphics" / pq["file"]
         if not p.exists():
             print(f"ERROR: missing pull-quote image: {p}", file=sys.stderr)
             return 1
-    print("Pull-quote source files present.")
+    print("All pull-quote source files present.")
 
     # Phase 1: fetch the existing draft so we know its current postBody
     print(f"\nFetching post {args.post_id}...")
@@ -234,10 +284,10 @@ def main():
     print("\nUploading / locating pull-quote images...")
     if args.dry_run:
         print("  DRY RUN — skipping uploads. Using placeholder URLs.")
-        image_urls = {pq["file"]: f"https://example.com/{pq['file']}" for pq in PULL_QUOTES}
+        image_urls = {pq["file"]: f"https://example.com/{pq['file']}" for pq in pull_quotes}
     else:
         image_urls = {}
-        for pq in PULL_QUOTES:
+        for pq in pull_quotes:
             local_path = bundle / "graphics" / pq["file"]
             url = upload_file(local_path)
             if not url:
@@ -249,7 +299,7 @@ def main():
     print("\nInserting <figure> tags...")
     new_body = current_body
     inserted = []
-    for pq in PULL_QUOTES:
+    for pq in pull_quotes:
         url = image_urls[pq["file"]]
         new_body, ok = insert_figure_after_paragraph(new_body, pq["anchor"], url, pq["alt"])
         if ok:
@@ -258,8 +308,8 @@ def main():
         else:
             print(f"  ✗ NOT FOUND anchor: '{pq['anchor'][:60]}...'", file=sys.stderr)
 
-    if len(inserted) != len(PULL_QUOTES):
-        print(f"\nERROR: expected {len(PULL_QUOTES)} insertions, got {len(inserted)}", file=sys.stderr)
+    if len(inserted) != len(pull_quotes):
+        print(f"\nERROR: expected {len(pull_quotes)} insertions, got {len(inserted)}", file=sys.stderr)
         print("Aborting before PATCH to avoid a partial state.", file=sys.stderr)
         return 1
 
