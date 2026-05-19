@@ -64,13 +64,15 @@ PIECES = [
         "publish_window": "Thursday AM publish",
         "destination": "blog.wetutorathome.com",
         "body_text": (
-            ":clipboard: *Blog assets* — hero, social card, data-viz graphic, "
-            "3 inline pull-quotes. All 6 below."
+            ":clipboard: *Blog assets* — hero, social card, preset stat graphic "
+            "(iLEAD outcomes), topic graphic (this week's data viz), 3 inline "
+            "pull-quotes. All 7 below."
         ),
         "image_files": [
             "graphics/hero.png",
             "graphics/social-card-with-logo.png",
-            "graphics/creative-graphic-with-logo.png",
+            "graphics/preset-stat-graphic-with-logo.png",
+            "graphics/topic-graphic-with-logo.png",
             "graphics/pull-quote-s1-with-logo.png",
             "graphics/pull-quote-s2-with-logo.png",
             "graphics/pull-quote-s3-with-logo.png",
