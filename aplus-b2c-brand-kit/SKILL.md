@@ -5,6 +5,18 @@ description: Apply A+ Tutoring B2C brand guidelines (colors, typography, voice c
 
 # A+ Tutoring B2C Brand Kit
 
+## Canonical channel URLs (added 2026-05-20)
+
+These are the authoritative public URLs for A+ Tutoring's B2C channels. Scripts, meta files, and JSON-LD schema must use these exact strings.
+
+| Channel | URL |
+|---|---|
+| Facebook | `https://www.facebook.com/WeTutorAtHome/` |
+| Website (canonical) | `https://wetutorathome.com` |
+| Blog | `https://blog.wetutorathome.com` |
+
+Older content that references `facebook.com/aplustutoring` or similar variants is incorrect and must be replaced.
+
 ## Logo assets
 
 Two logo variants live in this directory:
@@ -189,6 +201,8 @@ All B2C content drafted using this brand kit must be reviewed by Paola (B2C cont
 - `paola-voice` (future) — for content in Paola's voice
 
 ## Version
+
+v1.2 . Updated 2026-05-20 . Added canonical channel URLs section pinning the correct Facebook URL (https://www.facebook.com/WeTutorAtHome/). Older content that referenced facebook.com/aplustutoring was incorrect and has been corrected in deliver-to-slack.py and in the May 19 + May 20 bundle meta files.
 
 v1.1 . Updated 2026-05-19 . Applied Danielle's feedback: typography switched from single Inter to Playfair Display headings + DM Sans body to match blog v1.5. Title Case minimum on all headlines. Branded population imagery rules (California charter homeschool families, diverse and real-looking, not stock-photo aesthetic, warm color overlay tied to A+ Orange). Uncanny valley AI face artifact rules (visually verify every AI-generated face before shipping). Facebook-specific rules: 80-150 word cap, 8th-grade reading level max, strong CTA required in every post, hashtags optional (0-2 max), image required, specific scenes over abstractions.
 

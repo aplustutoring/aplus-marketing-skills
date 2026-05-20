@@ -189,7 +189,7 @@ Reserved for future testing. Two losing variants from meta-tags-optimizer:
   "areaServed": "US-CA",
   "sameAs": [
     "https://www.linkedin.com/company/aplus-tutoring",
-    "https://www.facebook.com/aplustutoring"
+    "https://www.facebook.com/WeTutorAtHome/"
   ]
 }
 ```

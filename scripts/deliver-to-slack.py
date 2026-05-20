@@ -134,7 +134,7 @@ PIECES = [
     {
         "name": "Facebook post (B2C, parents)",
         "publish_window": "Monday PM",
-        "destination": "facebook.com/aplustutoring",
+        "destination": "facebook.com/WeTutorAtHome",
         "body_file": "facebook.md",
         "image_files": ["graphics/facebook.png"],
     },
