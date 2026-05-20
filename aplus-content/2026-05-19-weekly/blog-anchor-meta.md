@@ -188,7 +188,7 @@ Reserved for future testing. Two losing variants from meta-tags-optimizer:
   "description": "California K-12 virtual intervention provider working with charter LEAs and funded intervention programs. Tier 2 and Tier 3 tutoring at the dosage and consistency the high-impact tutoring evidence base requires.",
   "areaServed": "US-CA",
   "sameAs": [
-    "https://www.linkedin.com/company/aplus-tutoring",
+    "https://www.linkedin.com/company/a-tutoring-inc-/",
     "https://www.facebook.com/WeTutorAtHome/"
   ]
 }

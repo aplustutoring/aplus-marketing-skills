@@ -1,6 +1,6 @@
 # LinkedIn Company Post . May 19, 2026
 
-**Channel:** linkedin.com/company/aplus-tutoring
+**Channel:** linkedin.com/company/a-tutoring-inc-
 **Voice:** A+ Tutoring company (institutional B2B)
 **Length target:** 150-220 words
 **Posting time:** Thursday May 21, 4:00 PM PT

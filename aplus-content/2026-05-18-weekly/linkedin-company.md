@@ -1,6 +1,6 @@
 # LinkedIn Company Post: 2026 CA Dashboard / CSI Cycle
 
-**Channel:** LinkedIn company page (linkedin.com/company/aplus-tutoring)
+**Channel:** LinkedIn company page (linkedin.com/company/a-tutoring-inc-)
 **Voice:** Company / aplus-b2b-brand-kit
 **Anchor slice from blog:** Section "Why the spring timing matters more than the fall designation."
 **Target word count:** 150-250

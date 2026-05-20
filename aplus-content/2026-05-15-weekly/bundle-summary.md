@@ -34,7 +34,7 @@
 | Day | Time | Asset | Channel |
 |---|---|---|---|
 | Wednesday, May 20, 2026 | 8:00 AM PT | Blog anchor | blog.wetutorathome.com (HubSpot) |
-| Wednesday, May 20, 2026 | 4:00 PM PT | LinkedIn company post + carousel | linkedin.com/company/aplus-tutoring |
+| Wednesday, May 20, 2026 | 4:00 PM PT | LinkedIn company post + carousel | linkedin.com/company/a-tutoring-inc- |
 | Thursday, May 21, 2026 | 8:00 AM PT | Roman op-ed | linkedin.com/in/romanslavinsky |
 | Friday, May 22, 2026 | 8:00 AM PT | Danielle op-ed | Danielle's personal LinkedIn |
 | Friday, May 22, 2026 | 5:00 PM PT | Facebook post + Facebook image | A+ Tutoring Facebook page |

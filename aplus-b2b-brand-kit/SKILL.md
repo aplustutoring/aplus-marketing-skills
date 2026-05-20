@@ -5,6 +5,20 @@ description: Apply A+ Tutoring B2B brand guidelines (colors, typography, voice c
 
 # A+ Tutoring B2B Brand Kit
 
+## Canonical channel URLs (added 2026-05-20)
+
+These are the authoritative public URLs for A+ Tutoring's B2B channels. Scripts, meta files, and JSON-LD schema must use these exact strings.
+
+| Channel | URL |
+|---|---|
+| LinkedIn company page | `https://www.linkedin.com/company/a-tutoring-inc-/` |
+| Roman personal LinkedIn | `https://www.linkedin.com/in/romanslavinsky` |
+| Blog | `https://blog.wetutorathome.com` |
+| Website (canonical) | `https://wetutorathome.com` |
+| HubSpot booking (Danielle) | `https://meetings.hubspot.com/successful/danielle-meetings-for-partnerships-programs` |
+
+Older content that references `linkedin.com/company/aplus-tutoring` is incorrect and must be replaced.
+
 ## Logo assets
 
 Two logo variants live in this directory:
@@ -185,6 +199,8 @@ Charter directors and special programs coordinators are bombarded with vendor pi
 - `danielle-voice` — for content authored by Danielle
 
 ## Version
+
+v1.2 . Updated 2026-05-20 . Added canonical channel URLs section pinning the correct LinkedIn URL (https://www.linkedin.com/company/a-tutoring-inc-/). Older content that referenced linkedin.com/company/aplus-tutoring was incorrect and has been corrected across all bundles, deliver-to-slack.py, and JSON-LD schema sameAs lists.
 
 v1.1 . Updated 2026-05-19 . Typography switched from single Inter to Playfair Display headings + DM Sans body. Title Case minimum on all headlines required. CMS font-family specification required on every HubSpot publish. Heading and body must be visually distinct fonts (serif heading + sans-serif body). Inter retired from the A+ system.
 

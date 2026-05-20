@@ -1,6 +1,6 @@
 # LinkedIn Company Post: Federal Funding Volatility
 
-**Channel:** LinkedIn company page (linkedin.com/company/aplus-tutoring)
+**Channel:** LinkedIn company page (linkedin.com/company/a-tutoring-inc-)
 **Voice:** Company / aplus-b2b-brand-kit
 **Anchor slice from blog:** Section "The funds in question" + Section "What does the withholding actually mean" (the what's-safe / what's-volatile split)
 **Target word count:** 150-250

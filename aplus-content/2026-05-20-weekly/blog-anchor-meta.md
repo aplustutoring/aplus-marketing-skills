@@ -179,7 +179,7 @@ on_page_audit_score: 91
   "description": "California K-12 virtual intervention provider working with charter LEAs and funded intervention programs. Structured-literacy Tier 2 and Tier 3 reading tutoring at the dosage and consistency the high-impact tutoring evidence base requires.",
   "areaServed": "US-CA",
   "sameAs": [
-    "https://www.linkedin.com/company/aplus-tutoring",
+    "https://www.linkedin.com/company/a-tutoring-inc-/",
     "https://www.facebook.com/WeTutorAtHome/"
   ]
 }

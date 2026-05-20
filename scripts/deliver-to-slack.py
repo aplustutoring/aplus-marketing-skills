@@ -80,14 +80,14 @@ PIECES = [
     {
         "name": "LinkedIn company post",
         "publish_window": "Thursday PM",
-        "destination": "linkedin.com/company/aplus-tutoring",
+        "destination": "linkedin.com/company/a-tutoring-inc-",
         "body_file": "linkedin-company.md",
         "image_files": ["graphics/linkedin-carousel-slide-1-with-logo.png"],
     },
     {
         "name": "LinkedIn carousel (5 slides)",
         "publish_window": "Thursday PM (attach to company post above)",
-        "destination": "linkedin.com/company/aplus-tutoring",
+        "destination": "linkedin.com/company/a-tutoring-inc-",
         "body_text": (
             ":clipboard: *Full LinkedIn carousel* — 5 slides, upload as a single "
             "PDF or sequential image carousel in the LinkedIn composer."
