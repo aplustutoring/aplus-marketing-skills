@@ -115,21 +115,20 @@ PIECES = [
         "image_files": ["graphics/pull-quote-s2-with-logo.png"],
     },
     {
-        "name": "Instagram post",
-        "publish_window": "Monday PM",
-        "destination": "instagram.com/aplustutoring",
-        "body_file": "instagram-post.md",
-        "image_files": ["graphics/instagram-post.png"],
-    },
-    {
-        "name": "Instagram story",
-        "publish_window": "Monday or Tuesday — story is 24hr",
+        "name": "Instagram Story (3 frames)",
+        "publish_window": "Same day as blog publish — story is 24hr",
         "destination": "instagram.com/aplustutoring (story)",
         "body_text": (
-            ":clipboard: *Instagram Story image* — Stories take no caption in the "
-            "composer; add stickers / link / poll in Instagram itself."
+            ":clipboard: *Instagram Story — 3-frame sequence* (v2.2). Post all 3 "
+            "in order. Frame 3 needs the link sticker pointing to the blog URL "
+            "(see HubSpot edit link in the header above). Per-frame copy is in "
+            "instagram-story-1.md / -2.md / -3.md for verification."
         ),
-        "image_files": ["graphics/instagram-story.png"],
+        "image_files": [
+            "graphics/instagram-story-1.png",
+            "graphics/instagram-story-2.png",
+            "graphics/instagram-story-3.png",
+        ],
     },
     {
         "name": "Facebook post (B2C, parents)",

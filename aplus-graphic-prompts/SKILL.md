@@ -39,8 +39,7 @@ The default A+ graphic dimension is blog-body-width landscape, NOT square. Squar
 | Pull-quote graphic | 1200x630 | 1.91:1 | Renders inline in blog body, scales to mobile |
 | Topic data-viz graphic | 1200x800 | 3:2 | Renders inline in blog body |
 | Preset stat graphic (canonical iLEAD) | 1080x1080 | 1:1 | Existing brand asset, do not change |
-| Instagram post | 1080x1080 | 1:1 | IG feed spec |
-| Instagram story | 1080x1920 | 9:16 | IG story spec |
+| Instagram story (3-frame sequence) | 1080x1920 each | 9:16 | IG story spec (see Instagram Story Aesthetic below). Instagram feed posts are NO LONGER part of the weekly bundle as of v2.2 (2026-05-20). |
 | Facebook share | 1200x630 | 1.91:1 | FB OG spec |
 
 **Never** ship a 1080x1080 square as the blog hero or inline body graphic. Body graphics must be landscape so they don't dominate mobile scroll.
@@ -173,9 +172,85 @@ When the hero engages the reader from the first frame, it earns the first 100 wo
 - Single graphics never show a swipe indicator
 - The indicator visually invites the reader into the carousel; on a single graphic it is misleading
 
+## Instagram Story Aesthetic (new in v2.2)
+
+A+ Tutoring's Instagram presence prioritizes the @aplustutoring grid over feed flooding. Effective 2026-05-20, the weekly bundle stops generating Instagram feed posts and instead ships a **3-frame Instagram Story sequence** that runs each week.
+
+### Why this matters
+
+- Stories are temporal (24 hours) so they can be topical and tied to the week's blog without polluting the permanent feed grid
+- Stories drive blog traffic via the link sticker, which the grid post can't carry organically
+- Brand-forward design (typography + brand colors + data viz) reads cleanly at 9:16 and matches Danielle's design direction more than AI-generated lifestyle photos do
+
+### Hard rules for Stories
+
+1. **NO AI-generated people in stories of any kind.** Stories are typography + brand-color + data-viz. Photos of children, parents, tutors, administrators are all out. The aesthetic is the brand mark, not a face.
+2. **Brand-forward typography.** Playfair Display for headlines, DM Sans for body text. The same font system as the blog. Never a system font.
+3. **Heavy A+ brand colors throughout.** Navy `#1A3A52`, Orange `#EF5829`, Gold `#F4A261`. Each frame uses one primary brand color as the dominant background.
+4. **Logo bottom-center on every frame.** White-variant `logo.png` chroma-keyed onto navy / orange / dark backgrounds. Consistent position across all 3 frames.
+5. **1080x1920 vertical (9:16)** for every frame.
+6. **Swipe → indicator** appears bottom-right on Frames 1 and 2 ONLY. Frame 3 is the final action frame and must NOT show a swipe indicator.
+
+### The 3-frame structure
+
+Every weekly bundle's Instagram Story sequence has exactly 3 frames in this order:
+
+**Frame 1 — HOOK**
+- Background: A+ Navy
+- Center: bold Playfair Display headline (a question or stat that stops the scroll). Source: blog body opening line or one of the verbatim pull-quotes.
+- Optional gold-colored DM Sans subhead beneath the headline
+- Logo bottom-center (white variant)
+- "Swipe →" bottom-right
+- NO people, NO photo background, NO illustrated faces
+
+**Frame 2 — KEY INSIGHT**
+- Background: A+ Orange (provides palette variation across the 3-frame run)
+- Center: a single large stat, percentage, or short claim rendered in Playfair Display 700. Source: the blog's strongest data point (iLEAD outcome, dosage number, state count, etc.).
+- DM Sans supporting line below
+- Logo bottom-center
+- "Swipe →" bottom-right
+- NO people
+
+**Frame 3 — CTA WITH LINK STICKER PLACEMENT**
+- Background: A+ Navy
+- Top-center: reserved 220px-tall cleanspace marked with a dashed gold outline labeled `[ link sticker goes here ]`. Roman or Danielle adds the actual Instagram link sticker pointing to the blog URL when posting. The dashed outline is a placement guide, not a final visual.
+- Center: bold Playfair Display CTA copy ("Read the full article", "Build the pathway", etc.)
+- Optional DM Sans subhead in gold
+- Below the CTA: an orange "↑ Tap the link sticker above" instruction in DM Sans bold
+- Logo bottom-center
+- NO swipe indicator (this is the final frame)
+- NO people
+
+### Meta schema for stories
+
+The bundle's `blog-anchor-meta.md` must include:
+
+```
+instagram_story_frames:
+  - "Frame 1 hook text (Playfair Display headline, ~22 chars per line works)"
+  - "Frame 2 key insight text (one stat or short claim)"
+  - "Frame 3 CTA copy (action verb)"
+
+# Optional subheads per frame (DM Sans, smaller)
+instagram_story_subheads:
+  - "Frame 1 subhead in DM Sans gold"
+  - "Frame 2 supporting line"
+  - "Frame 3 supporting line"
+```
+
+Each frame's body text comes from one of three approved sources:
+- Verbatim pull-quote text already in `pull_quotes:`
+- A blog-body sentence that is short and standalone
+- A concise paraphrase that Danielle would write herself if drafting from scratch
+
+### Builder + Slack delivery
+
+- Build with `scripts/build-instagram-stories.py --bundle aplus-content/{date}-weekly/`. The script renders all 3 frames with matplotlib + brand fonts, then composites the white logo bottom-center on each.
+- `scripts/deliver-to-slack.py` ships the 3 frames as a single Slack gallery piece labeled "Instagram Story (3 frames)" with the per-frame copy from `instagram-story-1.md` / `-2.md` / `-3.md` included for verification.
+
 ## Photographic image style for B2C
 
-For Instagram, Facebook, and parent-facing photographic graphics:
+For Facebook and parent-facing photographic graphics (Instagram feed posts are no longer in scope after v2.2):
 
 - Diverse families and children that match the California charter homeschool demographic, not stock-photo aesthetic
 - Warm color palette overlay tied to A+ Orange
@@ -205,6 +280,8 @@ If any of those eight points fails, the graphic must be revised before publicati
 - QA against: `aplus-content/{date}-weekly/qa-checklist.md` (human walkthrough)
 
 ## Version
+
+v2.2 . Updated 2026-05-20 . Removed Instagram feed posts from the weekly bundle. Added 3-frame Instagram Story sequence (Hook / Key Insight / CTA-with-link-sticker-placement) with hard rules: NO AI-generated people, Playfair Display + DM Sans, heavy A+ brand colors, logo bottom-center on every frame, 1080x1920 vertical each, Swipe → indicator on frames 1 and 2 only, Frame 3 reserves top-center cleanspace for the user-added link sticker. New `instagram_story_frames:` + optional `instagram_story_subheads:` meta schema fields. Builder script: `scripts/build-instagram-stories.py`. Slack delivery ships the 3 frames as a single labeled gallery piece.
 
 v2.1 . Updated 2026-05-20 . Added inline-blog-body placement rule for the preset stat graphic AND the topic graphic. Both must be embedded as `<figure>` tags in the published blog body (not only delivered as Slack assets or used in carousel slides). The meta schema gains `inline_data_viz_images` + `inline_data_viz_anchors` parallel lists; `scripts/embed-pull-quotes.py` processes them alongside pull-quote figures. Backward compatible with v2.0 bundles that didn't have the fields; retro-fit applied to the May 19 and May 20 bundles.
 

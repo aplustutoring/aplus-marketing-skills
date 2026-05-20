@@ -111,6 +111,18 @@ carousel_slides:
   - "The decision window is 21 days. Read spring MAP this week. Name the cohort by May 28. Confirm structure by June 5. After that, summer staffing is locked and the cohort defaults to whoever shows up."
   - "Talk to Danielle this week if you're a charter director making summer programming decisions. We can walk through the Tier 3 runway architecture in 30 minutes. Link in comments."
 
+# Instagram Story sequence (v2.2 / v1.3 brand kit, v1.8 blog skill).
+# 3 frames, brand-forward, NO AI-generated people. Built by
+# scripts/build-instagram-stories.py.
+instagram_story_frames:
+  - "Summer is the intervention runway."
+  - "75% / 87.5% / 80%"
+  - "Read the full playbook."
+instagram_story_subheads:
+  - "21 days to lock the cohort before staffing closes June 5."
+  - "iLEAD Tier 3 outcomes under a same-tutor, MAP-aligned, 18-24 hour summer block."
+  - "The 21-day decision window for charter LEAs."
+
 reflection_questions:
   - "If your school's spring MAP report were closed tomorrow, could you name the 10-30 students who would benefit most from an 8-week summer runway?"
   - "What would it change about your authorizer review or your federal accountability conversation if you could show 75-87.5% Tier 3 growth coming into October instead of coming into March?"

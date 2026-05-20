@@ -23,8 +23,9 @@
 | [graphics/pull-quote-s1-with-logo.png](graphics/pull-quote-s1-with-logo.png) | 1536x1024 inline pull-quote "Schools that screen 500 kindergartners in September and have no Tier 2 reading intervention in place by October are running the screen as paperwork." |
 | [graphics/pull-quote-s2-with-logo.png](graphics/pull-quote-s2-with-logo.png) | 1536x1024 inline pull-quote "The screen identifies WHICH students need it. The architecture answers WHETHER the school can deliver it." |
 | [graphics/linkedin-carousel-slide-1-with-logo.png](graphics/linkedin-carousel-slide-1-with-logo.png) through `-5-with-logo.png` | 5-slide carousel: 1=hook + swipe indicator, 2-4=insights, 5=CTA no swipe. |
-| [graphics/instagram-post.png](graphics/instagram-post.png) | 1080x1080 B2C parent-facing kitchen scene with first-grader and parent. |
-| [graphics/instagram-story.png](graphics/instagram-story.png) | 9:16 vertical B2C parent-child kitchen scene. |
+| [graphics/instagram-story-1.png](graphics/instagram-story-1.png) | 1080x1920 Story Frame 1 (Hook): "Does your school screen for dyslexia?" on A+ Navy, Playfair Display headline, gold DM Sans subhead, white logo bottom-center, Swipe → bottom-right. matplotlib-built, NO AI people (v2.2). |
+| [graphics/instagram-story-2.png](graphics/instagram-story-2.png) | 1080x1920 Story Frame 2 (Key Insight): "18+ states. Fall 2026." on A+ Orange, Playfair Display stat headline, DM Sans IDEA child-find subhead, white logo, Swipe → bottom-right. |
+| [graphics/instagram-story-3.png](graphics/instagram-story-3.png) | 1080x1920 Story Frame 3 (CTA): "Build the pathway" on A+ Navy, reserved top-center cleanspace for the link sticker (dashed gold outline), "↑ Tap the link sticker above" orange instruction, white logo bottom-center, NO swipe indicator. |
 | [graphics/facebook.png](graphics/facebook.png) | 1536x1024 B2C kitchen scene paired with the 140-word Facebook caption. |
 | [graphics/_batch_v2.py](graphics/_batch_v2.py) | v2.0 12-graphic batch generator for this bundle. |
 | [graphics/_build_topic_graphic.py](graphics/_build_topic_graphic.py) | matplotlib builder for the state-deadline topic graphic. |
@@ -34,7 +35,9 @@
 | [roman-oped.md](roman-oped.md) | 149-word Roman op-ed in v1.4 voice. Anecdote-first opener ("I sat in on a charter board meeting last week"), founder experience signal ("After 16 years"), flashlight metaphor, peer close. |
 | [danielle-oped.md](danielle-oped.md) | 198-word Danielle op-ed. Classroom-scene opener (Marcus, the first-grader who could not decode "cat"), iLEAD outcome evidence, implementation-lane close. |
 | [facebook.md](facebook.md) | 140-word parent-facing Facebook post (under v1.1 150-word cap). 8th-grade reading level. Three questions for parents to ask their school. |
-| [instagram-post.md](instagram-post.md) | 165-word Instagram caption matching the kitchen photograph. |
+| [instagram-story-1.md](instagram-story-1.md) | On-frame copy for Story Frame 1 (Hook). |
+| [instagram-story-2.md](instagram-story-2.md) | On-frame copy for Story Frame 2 (Key Insight). |
+| [instagram-story-3.md](instagram-story-3.md) | On-frame copy for Story Frame 3 (CTA + link sticker placement). |
 | [derivatives-quality-gates.md](derivatives-quality-gates.md) | All 4 derivatives PASS v1.4 / v1.2 / v1.1 checks. Paired-differentiation PASS. |
 
 ---
@@ -48,7 +51,7 @@
 | Friday, May 22, 2026 | 4:00 PM PT | Roman op-ed | linkedin.com/in/romanslavinsky |
 | Tuesday, May 26, 2026 | 8:00 AM PT | Danielle op-ed (post-Memorial Day) | Danielle's personal LinkedIn |
 | Tuesday, May 26, 2026 | 5:00 PM PT | Facebook post + image | A+ Tutoring Facebook page |
-| Tuesday, May 26, 2026 | 5:00 PM PT | Instagram post + image | instagram.com/aplustutoring |
+| Friday May 22, 2026 (paired w/ blog) | post-publish | Instagram Story (3 frames in sequence; Frame 3 needs link sticker) | instagram.com/aplustutoring (story) |
 | Mid-week standalone | as needed | Pull-quote graphic | LinkedIn or Instagram |
 
 Memorial Day weekend (May 23-25). Recommendation: publish blog + LinkedIn company + Roman op-ed by Friday EOD, defer Danielle op-ed, Facebook, and Instagram to Tuesday after the holiday so the posts don't disappear into the long-weekend feed lull.

@@ -154,6 +154,40 @@ When this skill is active, content should:
 - Include specific testimonial-style language when possible
 - Speak to the parent's hopes, not just the student's needs
 
+## Instagram Story rules (new in v1.3)
+
+Effective 2026-05-20, A+ Tutoring's weekly Instagram engagement runs through a **3-frame Instagram Story sequence** instead of a 1080x1080 feed post. The shift protects the @aplustutoring grid aesthetic (which is curated separately) and lets the weekly bundle drive blog traffic via the Story link sticker without feed pollution.
+
+### Why stories over feed posts
+
+- **Temporal (24-hour) format** lets each week's content be topical without committing the grid to a piece that will look stale a month from now
+- **Link sticker** drives traffic to the new blog post in a way feed posts can't
+- **Brand-forward aesthetic** (typography + brand colors + data viz) reads cleanly at 9:16 and matches Danielle's design direction
+- **Frees the grid** so @aplustutoring's feed can stay focused on student outcomes, family stories, and other evergreen B2C content rather than weekly thought-leadership
+
+### Hard rules for stories
+
+- **NO AI-generated people of any kind.** Stories are typography + brand color + data viz. Photos of children, parents, tutors are out — those belong on the feed when they're real and consented.
+- **Brand-forward typography.** Playfair Display for headlines, DM Sans for body. Same fonts as the blog and the rest of the v2.2 graphic system.
+- **Heavy A+ brand colors throughout.** Navy `#1A3A52`, Orange `#EF5829`, Gold `#F4A261`. Each frame uses one primary brand color as the dominant background; the 3-frame sequence varies the palette (navy → orange → navy) for visual rhythm.
+- **Logo bottom-center on every frame.** White variant.
+- **1080x1920 vertical (9:16).**
+- **Frame 3 reserves top-center cleanspace** for the user-added link sticker pointing to the new blog URL.
+
+### Aesthetic principle
+
+Stories are temporal, so they can be:
+- Hook-forward (the question / stat that stops the scroll)
+- Data-forward (one clean number or short claim per frame)
+- Action-driving (a clear CTA + link to the blog)
+
+They are NOT:
+- Photo-driven (the feed grid handles photography)
+- Caption-driven (the on-frame text IS the message — no long captions)
+- Permanent (24-hour expiry means topical content doesn't pollute the grid)
+
+See `aplus-graphic-prompts` v2.2 for the full 3-frame structure spec.
+
 ## Facebook-specific rules (new in v1.1)
 
 Facebook native posts are SHORT. The platform rewards posts that the parent reads in 5-8 seconds.
@@ -201,6 +235,8 @@ All B2C content drafted using this brand kit must be reviewed by Paola (B2C cont
 - `paola-voice` (future) — for content in Paola's voice
 
 ## Version
+
+v1.3 . Updated 2026-05-20 . Added "Instagram Story rules" section. The weekly content engine no longer ships an Instagram feed post (1080x1080); it ships a 3-frame Instagram Story sequence (1080x1920 each) instead. Hard rules: no AI-generated people, brand-forward typography (Playfair Display + DM Sans), heavy A+ brand colors, logo bottom-center on every frame, Frame 3 reserves top-center cleanspace for the user-added link sticker. The @aplustutoring grid stays curated for evergreen B2C content; stories carry the weekly topical thought-leadership work.
 
 v1.2 . Updated 2026-05-20 . Added canonical channel URLs section pinning the correct Facebook URL (https://www.facebook.com/WeTutorAtHome/). Older content that referenced facebook.com/aplustutoring was incorrect and has been corrected in deliver-to-slack.py and in the May 19 + May 20 bundle meta files.
 

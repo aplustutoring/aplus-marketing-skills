@@ -110,6 +110,17 @@ carousel_slides:
   - "What works: structured literacy delivered consistently in 1:1 or small-group format, with cumulative review built into the dosage. 18-24 hour minimum over the year, same tutor across the cycle."
   - "If you're a charter director with a fall 2026 screen on the calendar, talk to Danielle. We can walk through the screen-to-intervention pathway in 30 minutes. Link in comments."
 
+# Instagram Story sequence (v2.2 / v1.3 brand kit, v1.8 blog skill).
+# 3 frames, brand-forward, NO AI-generated people.
+instagram_story_frames:
+  - "Does your school screen for dyslexia?"
+  - "18+ states. Fall 2026."
+  - "Build the pathway."
+instagram_story_subheads:
+  - "K-2 universal screening is now law in most of the country."
+  - "Screening without a Tier 2 intervention pathway is an IDEA child-find liability."
+  - "What charter LEAs need to build before August."
+
 reflection_questions:
   - "If your school screens 200 K-2 students this September and 30 score below the dyslexia-risk threshold, what is your written plan for those 30 students by Halloween?"
   - "When your fall screen flags students at risk, where in your school's existing service architecture does the structured-literacy intervention live, and who delivers it?"
