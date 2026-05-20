@@ -504,7 +504,157 @@ Each published blog post becomes:
 - `danielle-voice` . inspiration for implementation-angle blog topics
 - Future: `aplus-blog-promotion` . skill to chop approved blog post into LinkedIn carousel, parent newsletter snippet, etc.
 
+## HubSpot SEO Properties (new in v1.7)
+
+`scripts/publish-to-hubspot.py` now sets these HubSpot blog post properties on every draft via the `POST /cms/v3/blogs/posts` API. Each property has a meta-file source field and a sensible default; the `featuredImageAltText` property is REQUIRED (the publisher fails if missing).
+
+| HubSpot property | Meta source field | Default | Notes |
+|---|---|---|---|
+| `htmlTitle` | `html_title:` | falls back to `meta_title`, then display title | The `<title>` tag for SEO. Often shorter and keyword-focused; can differ from the display title shown on the post page. |
+| `linkRelCanonicalUrl` | `canonical_url:` | auto-built as `https://blog.wetutorathome.com/{slug}` | Duplicate-content control. Always set on every post. |
+| `featuredImageAltText` | `hero_alt_text:` (also accepts legacy `hero_image_alt_text:`) | **REQUIRED — publisher fails if missing or < 10 chars** | Accessibility + image SEO. No more empty alt text or label-only alt ("hero image"). |
+| `tagIds` | `tag_ids:` (list) | `[]` | Topic clustering. Empty list is fine while we are not yet using topic clusters. |
+| `campaign` | `campaign_uuid:` | `None` | HubSpot marketing campaign UUID for attribution. Optional. |
+| `headHtml` | `schema_markup:` literal block OR auto-extracted from `\`\`\`json` fenced blocks in the meta file | `""` (warning logged) | JSON-LD schema injected into the `<head>`. Primary lever for AI Overview citation. |
+| `metaKeywords` | `keywords:` list (comma-joined) — falls back to `primary_keyword` + `secondary_keywords` list | `""` | Focus + secondary keywords. Lower-weight signal in 2026 but still indexed. |
+| `language` | `language:` | `"en"` | Locale code. |
+| `categoryId` | `category_id:` | `None` | Blog category. Optional. |
+
+### What these properties contribute to
+
+- **Search engine ranking:** `htmlTitle`, `linkRelCanonicalUrl`, `headHtml` schema
+- **AI Overview citation:** `headHtml` JSON-LD schema markup is the #1 lever for getting cited by ChatGPT, Perplexity, Google AI Overviews, Claude, Gemini
+- **Accessibility:** `featuredImageAltText`
+- **Topic clustering:** `tagIds`
+- **Marketing attribution:** `campaign`
+- **Internationalization:** `language`
+
+### Required meta file schema (v1.7)
+
+Every weekly bundle's `blog-anchor-meta.md` must contain (inside the first fenced ` ``` ` block unless noted):
+
+```
+h1_title: Display title shown on the post page (NO trailing colon)
+html_title: Shorter SEO title for <title> tag (often "{topic} | A+ Tutoring", NO trailing colon)
+meta_title: A/B variant of htmlTitle picked by meta-tags-optimizer
+url_slug: /blog-url-slug-hyphenated
+canonical_url: https://blog.wetutorathome.com/blog-url-slug-hyphenated
+meta_description: 150-160 char description with primary keyword
+hero_alt_text: Descriptive natural-English alt text for the hero image (>=10 chars, no "Mother en kid")
+language: en
+campaign_uuid: null
+category_id: null
+
+primary_keyword: focus keyword phrase
+keyword_search_volume: 320
+keyword_difficulty: 38
+keyword_intent: informational
+secondary_keywords:
+  - cluster term 1
+  - cluster term 2
+keywords:           # serialized to HubSpot metaKeywords comma-joined
+  - focus_keyword
+  - secondary_term_1
+  - secondary_term_2
+
+tag_ids: []         # leave empty if not yet using topic clusters
+typography:
+  heading_font: Playfair Display
+  body_font: DM Sans
+
+cta:
+  text: Audience-specific button copy (NOT generic)
+  url: https://meetings.hubspot.com/successful/danielle-meetings-for-partnerships-programs
+  style: button-orange
+
+proof_points_before_cta: 75% Math Tier 3, 87.5% ELA Tier 3, 80% Combined ...
+
+pull_quotes:
+  - "Verbatim quote 1 from blog body"
+  - "Verbatim quote 2 from blog body"
+inline_pull_quote_images:
+  - pull-quote-s1-with-logo.png
+  - pull-quote-s2-with-logo.png
+
+inline_data_viz_images:                 # v1.6
+  - topic-graphic-with-logo.png
+  - preset-stat-graphic-with-logo.png
+inline_data_viz_anchors:
+  - "exact substring from prose for topic graphic insertion point"
+  - "exact substring from prose for preset stat graphic insertion point"
+
+carousel_slides:
+  - "Carousel slide 2 body"
+  - "Carousel slide 3 body"
+  - "Carousel slide 4 body"
+  - "Carousel slide 5 CTA body"
+
+reading_time: 6 minutes
+target_publish_date: YYYY-MM-DD
+on_page_audit_score: 90
+```
+
+Then OUTSIDE the fenced block, the JSON-LD schema markup. Either form is accepted by the publisher:
+
+**Form A (preferred):** explicit literal block at top level:
+```
+schema_markup: |
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "Article", ...}
+  </script>
+  <script type="application/ld+json">
+  {"@context": "https://schema.org", "@type": "FAQPage", ...}
+  </script>
+```
+
+**Form B (backward compatible):** multiple ` ```json ` fenced blocks under a "JSON-LD schema block" heading. The publisher auto-wraps each in `<script type="application/ld+json">...</script>` tags.
+
+## Schema markup generation (v1.7)
+
+After the blog body is drafted, the agent generates JSON-LD schema markup and writes it into the meta file. Preferred path:
+
+1. **Call the `schema-markup-generator` community skill** (sourced from `aaron-he-zhu/seo-geo-claude-skills`, installed alongside the other SEO skills in v1.1). Pass the draft blog body and the SEO metadata block. The skill returns one or more ready-to-paste JSON-LD blocks.
+
+2. **Save the output under `schema_markup:` in the meta file** so the publisher can read it. The minimum schema set per blog is:
+   - `Article` (always)
+   - `FAQPage` (when the blog body contains question-format subheadings or reflection questions that map to Q&A pairs)
+   - `Organization` for A+ Tutoring (always; the block is identical across posts)
+   - `HowTo` (only when the body contains a numbered step-by-step procedure)
+
+### Fallback Article template
+
+If `schema-markup-generator` is unavailable, fall back to this manual `Article` template, populated from the meta fields:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "{h1_title}",
+  "description": "{meta_description}",
+  "image": "{featured_image_url}",
+  "datePublished": "{schema_date_published}",
+  "dateModified": "{schema_date_published}",
+  "author": {
+    "@type": "Organization",
+    "name": "A+ Tutoring",
+    "url": "https://wetutorathome.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "A+ Tutoring",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://wetutorathome.com/hs-fs/hubfs/Logo.png"
+    }
+  }
+}
+```
+
+Pair the Article block with an Organization block (sameAs the canonical channel URLs from `aplus-b2c-brand-kit` v1.2) and a FAQPage block built from the blog's reflection questions or any question-format subheadings.
+
 ## Version
+
+v1.7 . Updated 2026-05-20 . Added HubSpot SEO properties to the meta schema and publisher API payload: html_title, hero_alt_text (REQUIRED), canonical_url, keywords (list), tag_ids, campaign_uuid, schema_markup, language, category_id. Publisher now sets all of these via `POST /cms/v3/blogs/posts` (htmlTitle, linkRelCanonicalUrl, featuredImageAltText, tagIds, campaign, headHtml, metaKeywords, language, categoryId). JSON-LD schema markup injected via headHtml is the primary lever for AI Overview citation (ChatGPT, Perplexity, Google AI Overviews). Schema-markup-generator community skill is the preferred source; manual Article + FAQPage + Organization template is the fallback. Bump from v1.6 — the same-day v1.6 from earlier today added the inline data-viz embed schema and corrected the HubSpot edit URL form, both retained in v1.7.
 
 v1.6 . Updated 2026-05-20 . Two changes after the first two runs:
 

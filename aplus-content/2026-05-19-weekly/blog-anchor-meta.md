@@ -10,16 +10,32 @@
 
 ```
 url_slug: /charter-summer-tier-3-runway-intervention
+canonical_url: https://blog.wetutorathome.com/charter-summer-tier-3-runway-intervention
 
 h1_title: Summer as a Tier 3 Runway, Not Summer School
+html_title: Tier 3 Summer Intervention for Charter Schools | A+ Tutoring
 meta_title: Charter Summer Programming as Tier 3 Intervention | A+ Tutoring
 meta_description: Charter LEAs have 21 days to convert summer programming from compliance check-box to Tier 3 intervention runway. Spring MAP data locks the cohort. 75/87.5/80% iLEAD outcomes show the model.
+
+language: en
+tag_ids: []
+campaign_uuid: null
+category_id: null
 
 primary_keyword: charter school summer intervention program Tier 3
 keyword_search_volume: 320 monthly (estimated from cluster)
 keyword_difficulty: 38 (moderate)
 keyword_intent: informational with commercial investigation
 secondary_keywords:
+  - summer learning program Tier 3 charter
+  - spring MAP data summer intervention cohort
+  - high-impact tutoring summer charter LEA
+  - charter LEA summer programming 2026
+  - Tier 3 intervention runway
+
+# Combined keyword list (v1.7) — joined comma-separated into HubSpot metaKeywords
+keywords:
+  - charter school summer intervention program Tier 3
   - summer learning program Tier 3 charter
   - spring MAP data summer intervention cohort
   - high-impact tutoring summer charter LEA
@@ -71,6 +87,7 @@ schema_publisher: A+ Tutoring
 schema_date_published: 2026-05-19
 
 hero_image_alt_text: Charter school administrator at a home office desk reviewing a spring MAP data report on a laptop in late May, with handwritten cohort notes nearby.
+hero_alt_text: Charter school administrator at a home office desk reviewing a spring MAP data report on a laptop in late May, with handwritten cohort notes nearby.
 
 pull_quotes:
   - "Three weeks of planning in May determine whether the summer is an intervention engine or a paperwork exercise."

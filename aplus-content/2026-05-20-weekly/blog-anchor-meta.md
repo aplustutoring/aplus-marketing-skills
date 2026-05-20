@@ -10,16 +10,32 @@
 
 ```
 url_slug: /dyslexia-screening-charter-school-2026-implementation
+canonical_url: https://blog.wetutorathome.com/dyslexia-screening-charter-school-2026-implementation
 
 h1_title: Dyslexia Screening Laws Hit Implementation Deadlines This Fall
+html_title: 2026 Dyslexia Screening Compliance for Charter Schools | A+ Tutoring
 meta_title: Charter Schools and the 2026 Dyslexia Screening Deadline | A+ Tutoring
 meta_description: 18+ states require K-2 dyslexia screening by fall 2026. Charter LEAs that screen without a Tier 2 intervention pathway face IDEA child-find exposure. Build the pathway by August.
+
+language: en
+tag_ids: []
+campaign_uuid: null
+category_id: null
 
 primary_keyword: dyslexia screening charter school 2026 implementation
 keyword_search_volume: 480 monthly (estimated cluster)
 keyword_difficulty: 42 (moderate)
 keyword_intent: informational with commercial investigation
 secondary_keywords:
+  - K-2 dyslexia screening law charter
+  - structured literacy Tier 2 intervention
+  - dyslexia screening intervention pathway
+  - SB 114 dyslexia California charter
+  - charter LEA dyslexia compliance 2026
+
+# Combined keyword list (v1.7) — joined comma-separated for HubSpot
+keywords:
+  - dyslexia screening charter school 2026 implementation
   - K-2 dyslexia screening law charter
   - structured literacy Tier 2 intervention
   - dyslexia screening intervention pathway
@@ -70,6 +86,7 @@ schema_publisher: A+ Tutoring
 schema_date_published: 2026-05-20
 
 hero_image_alt_text: A first-grade student reading a phonics workbook at a kitchen table beside a parent in the late afternoon light, illustrating the early-reading intervention setting that follows a positive dyslexia screen.
+hero_alt_text: A first-grade student reading a phonics workbook at a kitchen table beside a parent in the late afternoon light, illustrating the early-reading intervention setting that follows a positive dyslexia screen.
 
 pull_quotes:
   - "Schools that screen 500 kindergartners in September and have no Tier 2 reading intervention in place by October are running the screen as paperwork."
