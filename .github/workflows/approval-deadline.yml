@@ -1,0 +1,58 @@
+name: Approval deadline check (Monday 7 AM PT)
+
+# Mon 07:00 PT — during PDT = 14:00 UTC Mon; during PST = 15:00 UTC Mon.
+# Idempotent: terminal approval statuses skip the API calls.
+on:
+  schedule:
+    - cron: "0 14 * * 1"  # 07:00 PDT Monday
+    - cron: "0 15 * * 1"  # 07:00 PST Monday
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run (skip state write and DM)"
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  resolve:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: aplus-state-write
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Resolve approval status
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          ROMAN_SLACK_USER_ID: ${{ secrets.ROMAN_SLACK_USER_ID }}
+        run: |
+          ARGS=""
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            ARGS="--dry-run"
+          fi
+          python3 scripts/approval_deadline.py $ARGS
+
+      - name: Commit state changes
+        if: ${{ inputs.dry_run != true }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state/topic-queue.json state/history.json
+          if git diff --cached --quiet; then
+            echo "no state changes to commit"
+          else
+            git commit -m "approval-deadline: resolve slate for week"
+            git push
+          fi

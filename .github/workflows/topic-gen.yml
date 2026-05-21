@@ -1,0 +1,70 @@
+name: Topic generation (Thursday 5 PM PT)
+
+# Schedule: Thursday 17:00 PT.
+# During PDT (Mar-Nov) PT = UTC-7, so 17:00 PT = 00:00 UTC Friday.
+# During PST (Nov-Mar) PT = UTC-8, so 17:00 PT = 01:00 UTC Friday.
+# Both crons are listed; the Python flow is idempotent + writes state with a
+# per-week key, so a second firing the same week is a noop.
+on:
+  schedule:
+    - cron: "0 0 * * 5"  # 17:00 PDT Thursday
+    - cron: "0 1 * * 5"  # 17:00 PST Thursday
+  workflow_dispatch:
+    inputs:
+      refresh:
+        description: "Refresh mode (skip lens 0 redundancy check)"
+        required: false
+        type: boolean
+        default: false
+      dry_run:
+        description: "Dry run (do not post to Slack or write state)"
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: aplus-state-write
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Run topic generation
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          HUBSPOT_PRIVATE_APP_TOKEN: ${{ secrets.HUBSPOT_PRIVATE_APP_TOKEN }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          APLUS_REFRESH_MODE: ${{ inputs.refresh && '1' || '0' }}
+        run: |
+          ARGS=""
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            ARGS="--dry-run"
+          fi
+          python3 scripts/topic_gen.py $ARGS
+
+      - name: Commit state changes
+        if: ${{ inputs.dry_run != true }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state/topic-queue.json state/history.json
+          if git diff --cached --quiet; then
+            echo "no state changes to commit"
+          else
+            git commit -m "topic-gen: persist state for $(date -u +%Y-%m-%d)"
+            git push
+          fi

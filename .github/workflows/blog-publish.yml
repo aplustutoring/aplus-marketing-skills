@@ -1,0 +1,69 @@
+name: Blog publish (Mon/Wed/Fri 8 AM PT)
+
+# Mon/Wed/Fri 08:00 PT — PDT = 15:00 UTC, PST = 16:00 UTC.
+# blog_publish.py derives the slot from the day-of-week (1=Mon, 2=Wed, 3=Fri).
+on:
+  schedule:
+    - cron: "0 15 * * 1,3,5"  # 08:00 PDT
+    - cron: "0 16 * * 1,3,5"  # 08:00 PST
+  workflow_dispatch:
+    inputs:
+      slot:
+        description: "Force a specific slot (1/2/3); leave blank to derive from weekday"
+        required: false
+        type: string
+        default: ""
+      dry_run:
+        description: "Dry run (no HubSpot or Slack writes)"
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: aplus-state-write
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Publish blog
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          HUBSPOT_PRIVATE_APP_TOKEN: ${{ secrets.HUBSPOT_PRIVATE_APP_TOKEN }}
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+        run: |
+          ARGS=""
+          if [ -n "${{ inputs.slot }}" ]; then
+            ARGS="$ARGS --slot ${{ inputs.slot }}"
+          fi
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            ARGS="$ARGS --dry-run"
+          fi
+          python3 scripts/blog_publish.py $ARGS
+
+      - name: Commit state changes
+        if: ${{ inputs.dry_run != true }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add state/topic-queue.json state/history.json
+          if git diff --cached --quiet; then
+            echo "no state changes to commit"
+          else
+            git commit -m "blog-publish: $(date -u +%a) slot published"
+            git push
+          fi
