@@ -17,3 +17,6 @@ scripts/slack-usage.log
 
 # Bundle outputs (too large for git; produced by weekly content engine)
 aplus-content/
+
+# State lock sidecars (transient — fcntl.flock anchors)
+state/*.lock
