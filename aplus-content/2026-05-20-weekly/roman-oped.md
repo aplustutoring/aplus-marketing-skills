@@ -2,10 +2,13 @@
 
 **Channel:** linkedin.com/in/romanslavinsky (personal)
 **Voice:** Roman v1.4 (founder, first-person, anecdote-first, peer close)
-**Length target:** 80-150 words
-**Posting time:** Friday May 22, 8:00 AM PT
+**Length target:** Section 1 body 80-150 words, Section 2 first comment
+**Posting time:** Friday May 22, 4:00 PM PT
 
 ---
+
+## SECTION 1: POST BODY
+(paste this in the LinkedIn post text field)
 
 I sat in on a charter board meeting last week where the director announced they had purchased a dyslexia screener for fall. Big round of applause from the board. Nobody asked the next question.
 
@@ -14,3 +17,9 @@ After 16 years of building this work, here is what I have learned. A screen is a
 The dollars are usually sitting in Title I or Title II. The structured literacy curriculum is out there. The work is naming the kids in October and getting them the right tutor on a schedule by November.
 
 If your board just bought a screener, ask what comes after.
+
+## SECTION 2: FIRST COMMENT
+(paste this as the first comment on your own post — gets 2-3x more reach than URL in body)
+
+Full article here →
+https://blog.wetutorathome.com/dyslexia-screening-charter-school-2026-implementation

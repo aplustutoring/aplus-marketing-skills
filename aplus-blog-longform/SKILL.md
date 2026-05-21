@@ -652,7 +652,64 @@ If `schema-markup-generator` is unavailable, fall back to this manual `Article` 
 
 Pair the Article block with an Organization block (sameAs the canonical channel URLs from `aplus-b2c-brand-kit` v1.2) and a FAQPage block built from the blog's reflection questions or any question-format subheadings.
 
+## LinkedIn posting workflow (new in v1.10)
+
+LinkedIn's algorithm de-prioritizes posts that contain external URLs in the body (the system reads them as "leaving the platform" signals). Links posted as the **first comment** on a self-authored post get 2-3x more reach than the same links in the body. The weekly engine's LinkedIn derivatives are now structured around this rule.
+
+### Required two-section split
+
+Every LinkedIn derivative (`linkedin-company.md`, `roman-oped.md`, `danielle-oped.md`) is split into two clearly labeled sections:
+
+```markdown
+## SECTION 1: POST BODY
+(paste this in the LinkedIn post text field)
+
+[150-250 words. Hook in the first line. NO blog URL in this section. NO
+"link in comments" text. Carousel slide 5 already says "Link in comments"
+so the reader knows where to find it. End with a strong CTA that doesn't
+include a URL — an action prompt or a direct question to the reader.]
+
+## SECTION 2: FIRST COMMENT
+(paste this as the first comment on your own post — gets 2-3x more reach
+than URL in body)
+
+Full article here →
+{predicted_blog_url}
+```
+
+### Why this matters
+
+- **Body URL = penalty.** LinkedIn's algorithm reads outbound URLs in the post body as a signal to suppress reach.
+- **First-comment URL = no penalty.** Self-comments are treated as engagement, not as link-out signals. The first comment shows up high in the comment stack and is visible to readers without expanding.
+- **Visual cue is already in the carousel.** Slide 5 of the LinkedIn carousel says "Read the full post" with the URL `blog.wetutorathome.com` rendered visually. Readers know to look in comments.
+
+### Rules per LinkedIn channel
+
+| Derivative | Section 1 body | Section 2 first comment |
+|---|---|---|
+| `linkedin-company.md` (A+ Tutoring company page) | 150-250 words, no URL | URL + "Full article here →" |
+| `roman-oped.md` (Roman personal LinkedIn) | 80-150 words, no URL, peer-close ending | URL + "Full article here →" |
+| `danielle-oped.md` (Danielle personal LinkedIn) | 120-220 words, no URL, walk-through-invite ending | URL + "Full article here →" |
+| `facebook.md` (Facebook page) | **URL stays in body** — Facebook's algorithm does NOT penalize outbound URLs the way LinkedIn does | n/a |
+| `instagram-story-3.md` | Link sticker (added in Instagram itself) | n/a |
+
+### Slack delivery integration
+
+`scripts/deliver-to-slack.py` ships the LinkedIn company / Roman / Danielle pieces with the .md file's full body (sections preserved). The LinkedIn carousel piece body_text now includes the 5-step posting workflow:
+
+1. Copy SECTION 1 text into the post field
+2. Upload all 5 carousel slides
+3. Click Post
+4. Immediately add SECTION 2 (blog URL) as the first comment
+5. Slide 5 already shows "Link in comments" so readers know where to look
+
+### Backward compatibility
+
+Existing single-body LinkedIn .md files (pre-v1.10) are still accepted by `deliver-to-slack.py` — the script shows whatever the file contains. The v1.10 two-section format becomes the standard for new bundles.
+
 ## Version
+
+v1.10 . Updated 2026-05-20 . LinkedIn derivatives (`linkedin-company.md`, `roman-oped.md`, `danielle-oped.md`) now use a two-section format: Section 1 = post body with no URL, Section 2 = first-comment text with the predicted blog URL. Aligns with LinkedIn algorithm behavior (links in first comment get 2-3x reach vs links in body). Facebook keeps URL in body (Facebook algorithm doesn't penalize outbound links). Slack delivery's LinkedIn carousel piece now includes the 5-step posting workflow in its body_text. Documented in new "LinkedIn posting workflow" section.
 
 v1.9 . Updated 2026-05-20 . Added `predicted_blog_url:` to the meta schema. Constructed deterministically from `url_slug:` as `https://blog.wetutorathome.com/{slug}` and available BEFORE the HubSpot publish step. Used by `scripts/deliver-to-slack.py` (header link, IG Story Frame 3 piece body) and any other pre-publish reference. Companion bumps: aplus-graphic-prompts v2.2 -> v2.3 (Frame 3 placeholder removed, logo composite halo eliminated, aspect-ratio preserved).
 

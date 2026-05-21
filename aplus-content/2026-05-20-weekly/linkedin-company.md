@@ -2,10 +2,13 @@
 
 **Channel:** linkedin.com/company/a-tutoring-inc-
 **Voice:** A+ Tutoring company (institutional B2B)
-**Length target:** 150-220 words
-**Posting time:** Thursday May 21, 4:00 PM PT (paired with blog)
+**Length target:** Section 1 body 150-250 words, Section 2 first comment
+**Posting time:** Friday May 22, 11:00 AM PT (paired with blog)
 
 ---
+
+## SECTION 1: POST BODY
+(paste this in the LinkedIn post text field)
 
 Universal K-2 dyslexia screening is no longer optional in most of the country. California, Texas, Florida, Michigan, Connecticut, and 13+ other states have laws with fall 2026 implementation deadlines that are firm.
 
@@ -13,8 +16,12 @@ Most charter LEAs have built the screening side. Few have built the intervention
 
 What works for screen-positive K-2 students is operationally specific: structured literacy delivered in 1:1 or small-group format, the same instructor across the year, 30-45 minutes 3-4 times per week, 18-24 hours minimum dosage. The research base from Stanford NSSA, the Annenberg Institute, and the National Center on Improving Literacy converges. iLEAD partner outcomes under matched conditions: 87.5% ELA Tier 3 growth, 75% Math Tier 3, 80% Combined, at 3-6x national MAP Growth benchmarks.
 
-If you are a charter director with a fall screen on the calendar, the next 90 days are the pathway-build window.
-
-Full piece in comments.
+If you are a charter director with a fall screen on the calendar, the next 90 days are the pathway-build window. Build the architecture before September.
 
 #CharterSchools #DyslexiaScreening #StructuredLiteracy #IDEA #K12Education
+
+## SECTION 2: FIRST COMMENT
+(paste this as the first comment on your own post — gets 2-3x more reach than URL in body)
+
+Full article here →
+https://blog.wetutorathome.com/dyslexia-screening-charter-school-2026-implementation

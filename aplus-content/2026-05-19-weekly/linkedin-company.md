@@ -2,10 +2,13 @@
 
 **Channel:** linkedin.com/company/a-tutoring-inc-
 **Voice:** A+ Tutoring company (institutional B2B)
-**Length target:** 150-220 words
+**Length target:** Section 1 body 150-220 words, Section 2 first comment
 **Posting time:** Thursday May 21, 4:00 PM PT
 
 ---
+
+## SECTION 1: POST BODY
+(paste this in the LinkedIn post text field)
 
 The decision charter directors are making in the next 21 days will shape next year's Tier 3 outcomes more than any contract they sign in August.
 
@@ -15,6 +18,10 @@ The Learning Policy Institute, Stanford's National Student Support Accelerator, 
 
 The decision window closes around the first week of June. After that, summer staffing is locked and the cohort defaults to whoever shows up.
 
-Full piece in comments.
-
 #CharterSchools #Tier3Intervention #SummerLearning #K12Education
+
+## SECTION 2: FIRST COMMENT
+(paste this as the first comment on your own post — gets 2-3x more reach than URL in body)
+
+Full article here →
+https://blog.wetutorathome.com/charter-summer-tier-3-runway-intervention

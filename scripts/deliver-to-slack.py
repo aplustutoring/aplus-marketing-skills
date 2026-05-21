@@ -90,7 +90,15 @@ PIECES = [
         "destination": "linkedin.com/company/a-tutoring-inc-",
         "body_text": (
             ":clipboard: *Full LinkedIn carousel* — 5 slides, upload as a single "
-            "PDF or sequential image carousel in the LinkedIn composer."
+            "PDF or sequential image carousel in the LinkedIn composer.\n\n"
+            "*LinkedIn posting workflow (v1.10):*\n"
+            "1. Copy SECTION 1 text from `linkedin-company.md` into the LinkedIn post field\n"
+            "2. Upload all 5 carousel slides (as PDF document post or sequential image carousel)\n"
+            "3. Click Post\n"
+            "4. Immediately add SECTION 2 (blog URL) as the first comment on your own post\n"
+            "5. Slide 5 already shows 'Link in comments' so the reader knows where to look\n\n"
+            ":bulb: *Why this matters:* LinkedIn's algorithm de-prioritizes posts with external URLs in the body. "
+            "Links posted as the *first comment* get 2-3x more reach. Same workflow applies to Roman + Danielle op-eds on personal LinkedIn."
         ),
         "image_files": [
             "graphics/linkedin-carousel-slide-1-with-logo.png",

@@ -2,10 +2,13 @@
 
 **Channel:** Danielle's personal LinkedIn
 **Voice:** Danielle (warm credibility, story-led, implementation lane)
-**Length target:** 120-220 words
+**Length target:** Section 1 body 120-220 words, Section 2 first comment
 **Posting time:** Tuesday May 26, 8:00 AM PT (post-Memorial Day)
 
 ---
+
+## SECTION 1: POST BODY
+(paste this in the LinkedIn post text field)
 
 When I was a classroom teacher, I had a first-grader named Marcus who could not decode the word "cat." He was bright, engaged, and loved being read to. He was also clearly going to be one of the kids the school system fails if nobody named what was going on. That year there was no screen, no formal pathway, and not enough of me to fill the gap.
 
@@ -14,3 +17,9 @@ Universal dyslexia screening exists so Marcus gets identified in week three of k
 iLEAD ELA Tier 3 outcomes (87.5% reaching growth benchmarks) are produced under matched conditions: same tutor across the cycle, MAP-aligned content, 18-24 hour dosage, weekly accountability roundtable with parent and director.
 
 If you are a charter director with a fall screen on the calendar, let's walk through the screen-to-intervention pathway for your school. The work fits inside the next 90 days.
+
+## SECTION 2: FIRST COMMENT
+(paste this as the first comment on your own post — gets 2-3x more reach than URL in body)
+
+Full article here →
+https://blog.wetutorathome.com/dyslexia-screening-charter-school-2026-implementation
