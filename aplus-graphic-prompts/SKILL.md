@@ -355,7 +355,64 @@ can reference it specifically.
 - Checked by: `aplus-brand-check` v1.2 (visual failures section)
 - QA against: `aplus-content/{date}-weekly/qa-checklist.md` (human walkthrough)
 
+## AI must NOT generate logos (new in v2.4)
+
+**Critical rule, applies to every AI-generated graphic in the bundle:** the AI image generator (GPT Image 2, Gemini, any model) must NOT include any logo, wordmark, brand mark, watermark, signature, monogram, or company identifier anywhere in the rendered image. The real A+ logo is added in a single post-processing step by `scripts/composite-logo.py` (or the per-bundle `_composite_logo_v2.py` legacy wrapper).
+
+### Why this rule exists
+
+A May 20, 2026 review found that GPT Image 2 was rendering its own approximation of the A+ Tutoring wordmark in the bottom-right corner of LinkedIn carousel slides — despite a v2.2 prompt that explicitly asked it to "leave a clean ~140x140 pixel area for the A+ logo composite." When the real logo was then composited on top, the result was two overlapping logos. The model was treating "A+ Tutoring blog post" in the prompt context as a positive signal to brand the image, and the negative-space instruction was too weak to override that signal.
+
+### The MANDATORY exclusion language
+
+Every AI prompt in `_batch_v2.py` (and any future bundle generator) appends this exact paragraph at the end:
+
+```
+CRITICAL CONSTRAINT: Do NOT include any logo, wordmark, brand mark,
+watermark, signature, monogram, or company identifier anywhere in this
+image. Do NOT add an 'A+' mark, an 'A+ Tutoring' wordmark, the word
+'Tutoring', the word 'aplustutoring', a chevron, a graduation cap icon,
+a pencil icon, an apple icon, a book icon, or any approximation of a
+tutoring-company logo. Do NOT add any badge, seal, certification mark,
+or signature graphic. The bottom-right 200x200 pixel zone MUST be solid
+background color with NO text, NO icons, NO graphics, NO design
+elements. The bottom-left 200x200 pixel zone must also be clean. If
+you generate any logo, wordmark, brand mark, or A+ approximation, the
+image is a generation failure and will be discarded. The real A+ logo
+is added in a separate post-processing step by a Python compositor;
+your job is to produce a clean canvas with NO branded marks of any
+kind. This is the single most important constraint.
+```
+
+Why this works where v2.2 didn't:
+- Repeats the negative constraint multiple ways (logo, wordmark, brand mark, monogram)
+- Lists specific elements GPT Image 2 commonly generates (chevron, graduation cap, pencil icon, apple icon, book icon, the word "Tutoring")
+- Names what a clean canvas must look like (solid color, no text, no icons)
+- States the failure mode explicitly ("the image is a generation failure")
+- Ends with a priority signal ("single most important constraint")
+
+### Enforcement
+
+`scripts/composite-logo.py` adds a runtime check: before compositing, it samples the bottom-right logo zone and computes RGB standard deviation. High variance (std > 20) indicates AI-generated content already in the zone — the script logs a warning so QA can flag it. The composite still runs (the real logo lays on top), but the operator knows the source needs regeneration.
+
+### Logo composite is the SOLE source of logos
+
+- AI generation: produces clean canvases with NO logos
+- `scripts/composite-logo.py`: adds exactly one logo per graphic, in the correct color variant
+- The Instagram Story builder (`scripts/build-instagram-stories.py`): adds its own logo composite directly during matplotlib rendering — no AI involved, so no risk of double-logo
+- The preset stat graphic: composited at brand-kit build time, copied verbatim into bundles, never re-composited
+
+### Idempotency rule
+
+`scripts/composite-logo.py` is idempotent by filename:
+- Input: any `<name>.png` in `<bundle>/graphics/` that does NOT end in `-with-logo.png`
+- Output: `<name>-with-logo.png`
+- Files already named `-with-logo.png` are skipped (no re-processing)
+- This prevents accidental double-composites if the script runs twice
+
 ## Version
+
+v2.4 . Updated 2026-05-20 . Diagnosed and fixed the double-logo artifact on LinkedIn carousel slide 3 (and quietly on other slides). Root cause: GPT Image 2 rendering its own "A+ TUTORING" wordmark in the source graphic despite the prior "leave clean space" prompt. Fix: MANDATORY anti-logo exclusion paragraph appended to every AI prompt in `_batch_v2.py`. The exclusion repeats the negative constraint multiple ways and names specific logo elements GPT Image 2 commonly generates. Also created `scripts/composite-logo.py` — a centralized idempotent compositor with smart color selection (luminance + brand color detection), pre-existing-logo zone variance check (warns if AI ignored the rule), and the v2.3 alpha-threshold + aspect-preserving composite logic. Per-bundle `_composite_logo_v2.py` scripts continue to work as legacy wrappers.
 
 v2.3 . Updated 2026-05-20 . Three fixes after Danielle's first review of the v2.2 bundle: (1) Instagram Story Frame 3 no longer renders a literal placeholder box or "[ link sticker goes here ]" text — the top region is intentionally empty and the bottom arrow + instruction does the visual work; (2) Logo composite pipeline rewrites to eliminate the rectangular halo: removed the erase-rectangle step, added hard alpha threshold (binary alpha: <128 -> 0, >=128 -> 255) after chroma-key and after every LANCZOS resize, preserved logo aspect ratio when resizing; (3) Predicted blog URL is now constructed deterministically from `url_slug:` BEFORE the HubSpot publish call so it is available to the Slack delivery header and the IG Story Frame 3 piece body via the `{predicted_blog_url}` placeholder.
 

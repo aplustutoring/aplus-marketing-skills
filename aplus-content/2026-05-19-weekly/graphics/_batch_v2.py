@@ -114,6 +114,30 @@ meta_text = META.read_text() if META.exists() else ""
 pull_quotes = extract_list(meta_text, "pull_quotes")
 carousel_slides = extract_list(meta_text, "carousel_slides")
 
+
+# --- v2.4 (2026-05-20): MANDATORY anti-logo exclusion appended to every AI prompt
+# Diagnosis: GPT Image 2 was rendering its own "A+ TUTORING" wordmark in the
+# bottom-right of carousel slides despite the prior "leave clean space" prompt,
+# producing a double-logo artifact when the real logo was composited on top.
+# This exclusion is much more explicit and repeats the negative constraint
+# several times. The real logo is always applied in a post-processing step
+# by scripts/composite-logo.py (or the per-bundle _composite_logo_v2.py).
+LOGO_EXCLUSION = (
+    " CRITICAL CONSTRAINT: Do NOT include any logo, wordmark, brand mark, "
+    "watermark, signature, monogram, or company identifier anywhere in this "
+    "image. Do NOT add an 'A+' mark, an 'A+ Tutoring' wordmark, the word "
+    "'Tutoring', the word 'aplustutoring', a chevron, a graduation cap icon, "
+    "a pencil icon, an apple icon, a book icon, or any approximation of a "
+    "tutoring-company logo. Do NOT add any badge, seal, certification mark, "
+    "or signature graphic. The bottom-right 200x200 pixel zone MUST be solid "
+    "background color with NO text, NO icons, NO graphics, NO design "
+    "elements. The bottom-left 200x200 pixel zone must also be clean. If "
+    "you generate any logo, wordmark, brand mark, or A+ approximation, the "
+    "image is a generation failure and will be discarded. The real A+ logo "
+    "is added in a separate post-processing step by a Python compositor; "
+    "your job is to produce a clean canvas with NO branded marks of any "
+    "kind. This is the single most important constraint."
+)
 # v2.0: pull_quotes capped at 2
 if len(pull_quotes) < 2:
     print("WARN: meta has fewer than 2 pull_quotes; padding")
@@ -141,7 +165,7 @@ Style: candid documentary photography, similar to The Atlantic
 education features. Natural color grading. Shot at 35mm equivalent,
 shallow depth of field. 3:2 widescreen, landscape orientation. No
 text overlay. No watermarks. No logos."""
-results.append(gemini("hero", hero_prompt, "16:9", "hero.png"))
+results.append(gemini("hero", hero_prompt + LOGO_EXCLUSION, "16:9", "hero.png"))
 print("hero:", results[-1].get("ok"), results[-1].get("error", ""))
 
 
@@ -158,7 +182,7 @@ bottom-right corner, leave a clean ~120x120 pixel area free of text or
 graphic elements (the A+ logo will be composited here). Generous
 whitespace. Clean, institutional. No photographs. No decorative icons.
 No date. No "A+ Tutoring blog" text. Aspect 16:9 landscape."""
-results.append(gpt_image_2("social_card", social_card_prompt, "1536x1024", "medium", "social-card.png"))
+results.append(gpt_image_2("social_card", social_card_prompt + LOGO_EXCLUSION, "1536x1024", "medium", "social-card.png"))
 print("social_card:", results[-1].get("ok"), results[-1].get("error", ""))
 
 
@@ -179,7 +203,7 @@ def pull_quote_prompt(quote_text):
     )
 
 for slot, quote in zip(["s1", "s2"], pull_quotes[:2]):
-    results.append(gpt_image_2(f"pull_quote_{slot}", pull_quote_prompt(quote),
+    results.append(gpt_image_2(f"pull_quote_{slot}", pull_quote_prompt(quote) + LOGO_EXCLUSION,
                                 "1536x1024", "medium", f"pull-quote-{slot}.png"))
     print(f"pull_quote_{slot}:", results[-1].get("ok"), results[-1].get("error", ""))
 
@@ -199,7 +223,7 @@ slide1_prompt = (
     "composite. Generous whitespace. No photographs. No decorative "
     "icons. No em dashes. No date. Aspect 2:3 portrait."
 )
-results.append(gpt_image_2("carousel_slide_1", slide1_prompt, "1024x1536", "medium", "linkedin-carousel-slide-1.png"))
+results.append(gpt_image_2("carousel_slide_1", slide1_prompt + LOGO_EXCLUSION, "1024x1536", "medium", "linkedin-carousel-slide-1.png"))
 print("carousel_1:", results[-1].get("ok"), results[-1].get("error", ""))
 
 
@@ -228,7 +252,7 @@ for i, slot in enumerate([2, 3, 4]):
         f"interior slide of the carousel). No decorative icons. No em "
         f"dashes. Aspect 2:3 portrait."
     )
-    results.append(gpt_image_2(f"carousel_slide_{slot}", p, "1024x1536", "medium", f"linkedin-carousel-slide-{slot}.png"))
+    results.append(gpt_image_2(f"carousel_slide_{slot}", p + LOGO_EXCLUSION, "1024x1536", "medium", f"linkedin-carousel-slide-{slot}.png"))
     print(f"carousel_{slot}:", results[-1].get("ok"), results[-1].get("error", ""))
 
 
@@ -249,42 +273,17 @@ slide5_prompt = (
     "A+ logo composite. Generous whitespace. NO swipe indicator. NO date. "
     "No em dashes. Aspect 2:3 portrait."
 )
-results.append(gpt_image_2("carousel_slide_5", slide5_prompt, "1024x1536", "medium", "linkedin-carousel-slide-5.png"))
+results.append(gpt_image_2("carousel_slide_5", slide5_prompt + LOGO_EXCLUSION, "1024x1536", "medium", "linkedin-carousel-slide-5.png"))
 print("carousel_5:", results[-1].get("ok"), results[-1].get("error", ""))
 
 
-# ---------- 10. INSTAGRAM POST (B2C parent-facing) ----------
-ig_post_prompt = """A photorealistic documentary photograph for an Instagram
-post by A+ Tutoring, parent-facing audience. A middle-school-age student
-sitting at a kitchen table working on a notebook, with a parent nearby
-in supportive conversation (not hovering). California charter homeschool
-demographic, diverse family aesthetic, NOT stock-photo styling. Late
-afternoon warm golden sunlight through a kitchen window. Plants, family
-photos, a fruit bowl visible in the background. Style: candid
-documentary, warm natural color grading, real-looking faces (no
-uncanny-valley artifacts), warm-and-hopeful tone consistent with A+'s
-B2C brand. Composition follows rule of thirds. Shot at 50mm equivalent,
-shallow depth of field. Square aspect 1:1. No text overlay. No
-watermarks. No logos."""
-results.append(gemini("instagram_post", ig_post_prompt, "1:1", "instagram-post.png"))
-print("instagram_post:", results[-1].get("ok"), results[-1].get("error", ""))
-
-
-# ---------- 11. INSTAGRAM STORY (B2C vertical) ----------
-ig_story_prompt = """A vertical photorealistic documentary photograph for
-an Instagram Story by A+ Tutoring. A parent and middle-school-age student
-at a kitchen table, in conversation about schoolwork. Vertical
-composition with the parent-child interaction in the lower two-thirds
-and natural ceiling + window light in the upper third. Warm golden
-afternoon sunlight. California charter homeschool demographic, real-
-looking faces (no uncanny-valley artifacts), diverse family aesthetic.
-Style: candid documentary, warm color grading, B2C parent-facing tone.
-The scene is unmistakably a home (kitchen cabinets, plants, family
-photos), NOT a school setting. Shot at 35mm equivalent. 9:16 vertical
-aspect ratio. No text overlay (Story captions are added in IG later).
-No watermarks. No logos."""
-results.append(gemini("instagram_story", ig_story_prompt, "9:16", "instagram-story.png"))
-print("instagram_story:", results[-1].get("ok"), results[-1].get("error", ""))
+# Instagram feed post (1080x1080 single photo) and single-photo Instagram
+# Story were RETIRED in aplus-graphic-prompts v2.2 (2026-05-20). The
+# weekly bundle now ships a 3-frame Instagram Story sequence built by
+# scripts/build-instagram-stories.py (matplotlib + brand fonts, NO AI
+# people). The Gemini calls that previously generated instagram-post.png
+# and instagram-story.png have been removed here as part of the v2.4
+# cleanup so we don't burn API quota generating files nothing reads.
 
 
 # ---------- 12. FACEBOOK (B2C horizontal) ----------
@@ -302,7 +301,7 @@ shelf), NOT a school setting. Composition follows rule of thirds with
 parent-and-child pair on the right two-thirds of the frame. Shot at
 50mm equivalent, shallow depth of field. 16:9 widescreen. No text
 overlay. No watermarks. No logos."""
-results.append(gemini("facebook", fb_prompt, "16:9", "facebook.png"))
+results.append(gemini("facebook", fb_prompt + LOGO_EXCLUSION, "16:9", "facebook.png"))
 print("facebook:", results[-1].get("ok"), results[-1].get("error", ""))
 
 

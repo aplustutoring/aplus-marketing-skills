@@ -4,16 +4,16 @@
     "ok": true,
     "provider": "gemini-3.1-flash-image",
     "file": "hero.png",
-    "bytes": 878253,
-    "elapsed_s": 24.9,
+    "bytes": 809975,
+    "elapsed_s": 18.3,
     "usage": {
-      "promptTokenCount": 192,
-      "candidatesTokenCount": 1627,
-      "totalTokenCount": 1819,
+      "promptTokenCount": 423,
+      "candidatesTokenCount": 1534,
+      "totalTokenCount": 1957,
       "promptTokensDetails": [
         {
           "modality": "TEXT",
-          "tokenCount": 192
+          "tokenCount": 423
         }
       ],
       "candidatesTokensDetails": [
@@ -32,20 +32,20 @@
     "size": "1536x1024",
     "quality": "medium",
     "file": "social-card.png",
-    "bytes": 1294402,
-    "elapsed_s": 48.4,
+    "bytes": 1309759,
+    "elapsed_s": 38.2,
     "usage": {
-      "input_tokens": 222,
+      "input_tokens": 444,
       "input_tokens_details": {
         "image_tokens": 0,
-        "text_tokens": 222
+        "text_tokens": 444
       },
       "output_tokens": 1372,
       "output_tokens_details": {
         "image_tokens": 1372,
         "text_tokens": 0
       },
-      "total_tokens": 1594
+      "total_tokens": 1816
     }
   },
   {
@@ -55,20 +55,20 @@
     "size": "1536x1024",
     "quality": "medium",
     "file": "pull-quote-s1.png",
-    "bytes": 2720433,
-    "elapsed_s": 48.9,
+    "bytes": 2518292,
+    "elapsed_s": 40.8,
     "usage": {
-      "input_tokens": 186,
+      "input_tokens": 408,
       "input_tokens_details": {
         "image_tokens": 0,
-        "text_tokens": 186
+        "text_tokens": 408
       },
       "output_tokens": 1372,
       "output_tokens_details": {
         "image_tokens": 1372,
         "text_tokens": 0
       },
-      "total_tokens": 1558
+      "total_tokens": 1780
     }
   },
   {
@@ -78,20 +78,20 @@
     "size": "1536x1024",
     "quality": "medium",
     "file": "pull-quote-s2.png",
-    "bytes": 2834111,
-    "elapsed_s": 44.4,
+    "bytes": 2576921,
+    "elapsed_s": 42.0,
     "usage": {
-      "input_tokens": 174,
+      "input_tokens": 396,
       "input_tokens_details": {
         "image_tokens": 0,
-        "text_tokens": 174
+        "text_tokens": 396
       },
       "output_tokens": 1372,
       "output_tokens_details": {
         "image_tokens": 1372,
         "text_tokens": 0
       },
-      "total_tokens": 1546
+      "total_tokens": 1768
     }
   },
   {
@@ -101,20 +101,20 @@
     "size": "1024x1536",
     "quality": "medium",
     "file": "linkedin-carousel-slide-1.png",
-    "bytes": 1396922,
-    "elapsed_s": 39.8,
+    "bytes": 1384146,
+    "elapsed_s": 34.7,
     "usage": {
-      "input_tokens": 204,
+      "input_tokens": 426,
       "input_tokens_details": {
         "image_tokens": 0,
-        "text_tokens": 204
+        "text_tokens": 426
       },
       "output_tokens": 1372,
       "output_tokens_details": {
         "image_tokens": 1372,
         "text_tokens": 0
       },
-      "total_tokens": 1576
+      "total_tokens": 1798
     }
   },
   {
@@ -124,20 +124,20 @@
     "size": "1024x1536",
     "quality": "medium",
     "file": "linkedin-carousel-slide-2.png",
-    "bytes": 1146461,
-    "elapsed_s": 47.3,
+    "bytes": 1141467,
+    "elapsed_s": 37.3,
     "usage": {
-      "input_tokens": 209,
+      "input_tokens": 431,
       "input_tokens_details": {
         "image_tokens": 0,
-        "text_tokens": 209
+        "text_tokens": 431
       },
       "output_tokens": 1372,
       "output_tokens_details": {
         "image_tokens": 1372,
         "text_tokens": 0
       },
-      "total_tokens": 1581
+      "total_tokens": 1803
     }
   },
   {
@@ -147,20 +147,20 @@
     "size": "1024x1536",
     "quality": "medium",
     "file": "linkedin-carousel-slide-3.png",
-    "bytes": 1415425,
-    "elapsed_s": 48.1,
+    "bytes": 1382145,
+    "elapsed_s": 33.1,
     "usage": {
-      "input_tokens": 170,
+      "input_tokens": 392,
       "input_tokens_details": {
         "image_tokens": 0,
-        "text_tokens": 170
+        "text_tokens": 392
       },
       "output_tokens": 1372,
       "output_tokens_details": {
         "image_tokens": 1372,
         "text_tokens": 0
       },
-      "total_tokens": 1542
+      "total_tokens": 1764
     }
   },
   {
@@ -170,20 +170,20 @@
     "size": "1024x1536",
     "quality": "medium",
     "file": "linkedin-carousel-slide-4.png",
-    "bytes": 1181711,
-    "elapsed_s": 42.4,
+    "bytes": 1135676,
+    "elapsed_s": 38.4,
     "usage": {
-      "input_tokens": 205,
+      "input_tokens": 427,
       "input_tokens_details": {
         "image_tokens": 0,
-        "text_tokens": 205
+        "text_tokens": 427
       },
       "output_tokens": 1372,
       "output_tokens_details": {
         "image_tokens": 1372,
         "text_tokens": 0
       },
-      "total_tokens": 1577
+      "total_tokens": 1799
     }
   },
   {
@@ -193,20 +193,20 @@
     "size": "1024x1536",
     "quality": "medium",
     "file": "linkedin-carousel-slide-5.png",
-    "bytes": 1355499,
-    "elapsed_s": 43.7,
+    "bytes": 1370422,
+    "elapsed_s": 39.3,
     "usage": {
-      "input_tokens": 241,
+      "input_tokens": 463,
       "input_tokens_details": {
         "image_tokens": 0,
-        "text_tokens": 241
+        "text_tokens": 463
       },
       "output_tokens": 1372,
       "output_tokens_details": {
         "image_tokens": 1372,
         "text_tokens": 0
       },
-      "total_tokens": 1613
+      "total_tokens": 1835
     }
   },
   {
@@ -214,16 +214,16 @@
     "ok": true,
     "provider": "gemini-3.1-flash-image",
     "file": "instagram-post.png",
-    "bytes": 831775,
-    "elapsed_s": 19.4,
+    "bytes": 731814,
+    "elapsed_s": 11.8,
     "usage": {
-      "promptTokenCount": 162,
-      "candidatesTokenCount": 1628,
-      "totalTokenCount": 1790,
+      "promptTokenCount": 393,
+      "candidatesTokenCount": 1538,
+      "totalTokenCount": 1931,
       "promptTokensDetails": [
         {
           "modality": "TEXT",
-          "tokenCount": 162
+          "tokenCount": 393
         }
       ],
       "candidatesTokensDetails": [
@@ -240,16 +240,16 @@
     "ok": true,
     "provider": "gemini-3.1-flash-image",
     "file": "instagram-story.png",
-    "bytes": 898624,
-    "elapsed_s": 19.9,
+    "bytes": 884933,
+    "elapsed_s": 16.0,
     "usage": {
-      "promptTokenCount": 169,
-      "candidatesTokenCount": 1601,
-      "totalTokenCount": 1770,
+      "promptTokenCount": 400,
+      "candidatesTokenCount": 1683,
+      "totalTokenCount": 2083,
       "promptTokensDetails": [
         {
           "modality": "TEXT",
-          "tokenCount": 169
+          "tokenCount": 400
         }
       ],
       "candidatesTokensDetails": [
@@ -266,16 +266,16 @@
     "ok": true,
     "provider": "gemini-3.1-flash-image",
     "file": "facebook.png",
-    "bytes": 806250,
-    "elapsed_s": 19.0,
+    "bytes": 829422,
+    "elapsed_s": 12.9,
     "usage": {
-      "promptTokenCount": 205,
-      "candidatesTokenCount": 1660,
-      "totalTokenCount": 1865,
+      "promptTokenCount": 436,
+      "candidatesTokenCount": 1596,
+      "totalTokenCount": 2032,
       "promptTokensDetails": [
         {
           "modality": "TEXT",
-          "tokenCount": 205
+          "tokenCount": 436
         }
       ],
       "candidatesTokensDetails": [

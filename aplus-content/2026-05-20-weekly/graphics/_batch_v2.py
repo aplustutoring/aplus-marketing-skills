@@ -97,6 +97,30 @@ meta_text = META.read_text() if META.exists() else ""
 pull_quotes = extract_list(meta_text, "pull_quotes")
 carousel_slides = extract_list(meta_text, "carousel_slides")
 
+# --- v2.4 (2026-05-20): MANDATORY anti-logo exclusion appended to every AI prompt
+# Diagnosis: GPT Image 2 was rendering its own "A+ TUTORING" wordmark in the
+# bottom-right of carousel slides despite the prior "leave clean space" prompt,
+# producing a double-logo artifact when the real logo was composited on top.
+# This exclusion is much more explicit and repeats the negative constraint
+# several times. The real logo is always applied in a post-processing step
+# by scripts/composite-logo.py (or the per-bundle _composite_logo_v2.py).
+LOGO_EXCLUSION = (
+    " CRITICAL CONSTRAINT: Do NOT include any logo, wordmark, brand mark, "
+    "watermark, signature, monogram, or company identifier anywhere in this "
+    "image. Do NOT add an 'A+' mark, an 'A+ Tutoring' wordmark, the word "
+    "'Tutoring', the word 'aplustutoring', a chevron, a graduation cap icon, "
+    "a pencil icon, an apple icon, a book icon, or any approximation of a "
+    "tutoring-company logo. Do NOT add any badge, seal, certification mark, "
+    "or signature graphic. The bottom-right 200x200 pixel zone MUST be solid "
+    "background color with NO text, NO icons, NO graphics, NO design "
+    "elements. The bottom-left 200x200 pixel zone must also be clean. If "
+    "you generate any logo, wordmark, brand mark, or A+ approximation, the "
+    "image is a generation failure and will be discarded. The real A+ logo "
+    "is added in a separate post-processing step by a Python compositor; "
+    "your job is to produce a clean canvas with NO branded marks of any "
+    "kind. This is the single most important constraint."
+)
+
 if len(pull_quotes) < 2:
     pull_quotes = (pull_quotes + ["Pull quote 1.", "Pull quote 2."])[:2]
 if len(carousel_slides) < 4:
@@ -121,7 +145,7 @@ uncanny-valley artifacts). California charter homeschool family
 aesthetic, diverse family, NOT stock-photo styling. Shot at 35mm
 equivalent, shallow depth of field. 3:2 widescreen landscape. No text
 overlay. No watermarks. No logos."""
-results.append(gemini("hero", hero_prompt, "16:9", "hero.png"))
+results.append(gemini("hero", hero_prompt + LOGO_EXCLUSION, "16:9", "hero.png"))
 print("hero:", results[-1].get("ok"), results[-1].get("error", ""))
 
 
@@ -140,7 +164,7 @@ intervention pathway." In the bottom-right corner, leave a clean
 composite. Generous whitespace. Clean, institutional. No photographs.
 No decorative icons. No date. No "A+ Tutoring blog" text. Aspect 16:9
 landscape."""
-results.append(gpt_image_2("social_card", social_card_prompt, "1536x1024", "medium", "social-card.png"))
+results.append(gpt_image_2("social_card", social_card_prompt + LOGO_EXCLUSION, "1536x1024", "medium", "social-card.png"))
 print("social_card:", results[-1].get("ok"), results[-1].get("error", ""))
 
 
@@ -161,7 +185,7 @@ def pull_quote_prompt(quote_text):
     )
 
 for slot, quote in zip(["s1", "s2"], pull_quotes[:2]):
-    results.append(gpt_image_2(f"pull_quote_{slot}", pull_quote_prompt(quote),
+    results.append(gpt_image_2(f"pull_quote_{slot}", pull_quote_prompt(quote) + LOGO_EXCLUSION,
                                 "1536x1024", "medium", f"pull-quote-{slot}.png"))
     print(f"pull_quote_{slot}:", results[-1].get("ok"), results[-1].get("error", ""))
 
@@ -181,7 +205,7 @@ slide1_prompt = (
     "Generous whitespace. No photographs. No decorative icons. No em "
     "dashes. No date. Aspect 2:3 portrait."
 )
-results.append(gpt_image_2("carousel_slide_1", slide1_prompt, "1024x1536", "medium", "linkedin-carousel-slide-1.png"))
+results.append(gpt_image_2("carousel_slide_1", slide1_prompt + LOGO_EXCLUSION, "1024x1536", "medium", "linkedin-carousel-slide-1.png"))
 print("carousel_1:", results[-1].get("ok"), results[-1].get("error", ""))
 
 
@@ -208,7 +232,7 @@ for i, slot in enumerate([2, 3, 4]):
         f"interior slide of the carousel). No decorative icons. No em "
         f"dashes. Aspect 2:3 portrait."
     )
-    results.append(gpt_image_2(f"carousel_slide_{slot}", p, "1024x1536", "medium", f"linkedin-carousel-slide-{slot}.png"))
+    results.append(gpt_image_2(f"carousel_slide_{slot}", p + LOGO_EXCLUSION, "1024x1536", "medium", f"linkedin-carousel-slide-{slot}.png"))
     print(f"carousel_{slot}:", results[-1].get("ok"), results[-1].get("error", ""))
 
 
@@ -229,43 +253,20 @@ slide5_prompt = (
     "A+ logo composite. Generous whitespace. NO swipe indicator. NO "
     "date. No em dashes. Aspect 2:3 portrait."
 )
-results.append(gpt_image_2("carousel_slide_5", slide5_prompt, "1024x1536", "medium", "linkedin-carousel-slide-5.png"))
+results.append(gpt_image_2("carousel_slide_5", slide5_prompt + LOGO_EXCLUSION, "1024x1536", "medium", "linkedin-carousel-slide-5.png"))
 print("carousel_5:", results[-1].get("ok"), results[-1].get("error", ""))
 
 
-# ---------- 10. INSTAGRAM POST ----------
-ig_post_prompt = """A photorealistic documentary photograph for an Instagram
-post by A+ Tutoring, parent-facing audience. A first-grade student (age
-6-7) reading a phonics workbook at a kitchen table with a parent nearby
-in supportive conversation. The child is pointing at a word, sounding it
-out. California charter homeschool demographic, diverse family, real-
-looking faces (no uncanny-valley artifacts), NOT stock-photo styling.
-Late afternoon warm golden sunlight through a kitchen window. Plants,
-family photos in the background. Style: candid documentary, warm
-natural color grading, hopeful tone. Composition follows rule of
-thirds. Shot at 50mm equivalent, shallow depth of field. Square aspect
-1:1. No text overlay. No watermarks. No logos."""
-results.append(gemini("instagram_post", ig_post_prompt, "1:1", "instagram-post.png"))
-print("instagram_post:", results[-1].get("ok"), results[-1].get("error", ""))
+# Instagram feed post (1080x1080 single photo) and single-photo Instagram
+# Story were RETIRED in aplus-graphic-prompts v2.2 (2026-05-20). The
+# weekly bundle now ships a 3-frame Instagram Story sequence built by
+# scripts/build-instagram-stories.py (matplotlib + brand fonts, NO AI
+# people). The Gemini calls that previously generated instagram-post.png
+# and instagram-story.png have been removed here as part of the v2.4
+# cleanup so we don't burn API quota generating files nothing reads.
 
 
-# ---------- 11. INSTAGRAM STORY ----------
-ig_story_prompt = """A vertical photorealistic documentary photograph for
-an Instagram Story by A+ Tutoring. A first-grade student and parent at
-a kitchen table, with the parent helping the child sound out a word
-from a phonics workbook. Vertical composition: parent-child interaction
-in the lower two-thirds, natural ceiling + window light in the upper
-third. Warm golden afternoon sunlight. California charter homeschool
-demographic, real-looking faces (no uncanny-valley artifacts), diverse
-family. Style: candid documentary, warm color grading, B2C parent-
-facing tone. The scene is unmistakably a home (kitchen cabinets, plants,
-family photos), NOT a school setting. Shot at 35mm equivalent. 9:16
-vertical aspect ratio. No text overlay. No watermarks. No logos."""
-results.append(gemini("instagram_story", ig_story_prompt, "9:16", "instagram-story.png"))
-print("instagram_story:", results[-1].get("ok"), results[-1].get("error", ""))
-
-
-# ---------- 12. FACEBOOK ----------
+# ---------- 10. FACEBOOK ----------
 fb_prompt = """A photorealistic documentary photograph for a parent-facing
 Facebook post by A+ Tutoring. A first-grade-age child (6-7 years old)
 reading a phonics workbook at a kitchen table. A parent sits next to
@@ -280,7 +281,7 @@ NOT a school setting. Composition follows rule of thirds with the
 parent-and-child pair on the right two-thirds. Shot at 50mm equivalent,
 shallow depth of field. 16:9 widescreen. No text overlay. No watermarks.
 No logos."""
-results.append(gemini("facebook", fb_prompt, "16:9", "facebook.png"))
+results.append(gemini("facebook", fb_prompt + LOGO_EXCLUSION, "16:9", "facebook.png"))
 print("facebook:", results[-1].get("ok"), results[-1].get("error", ""))
 
 
