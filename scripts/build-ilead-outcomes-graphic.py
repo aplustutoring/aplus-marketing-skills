@@ -29,7 +29,8 @@ import matplotlib.font_manager as fm
 from matplotlib.patches import Wedge
 
 # Register A+ brand fonts (Playfair Display + DM Sans) per aplus-graphic-prompts v2.0
-BRAND_FONTS_DIR = Path("/Users/romanslavinsky/Desktop/aplus-marketing-skills/skills/aplus-b2b-brand-kit/fonts")
+REPO_ROOT = Path(__file__).resolve().parent.parent
+BRAND_FONTS_DIR = REPO_ROOT / "skills" / "aplus-b2b-brand-kit" / "fonts"
 for _ttf in BRAND_FONTS_DIR.glob("*.ttf"):
     try:
         fm.fontManager.addfont(str(_ttf))
@@ -69,8 +70,8 @@ HEADLINE = "iLEAD 2024-25 Tier 3 Outcomes"
 FOOTER = "Source: A+ Tutoring published case studies"
 
 OUTPUTS = [
-    Path("/Users/romanslavinsky/Desktop/aplus-marketing-skills/skills/aplus-b2b-brand-kit/ilead-outcomes-graphic.png"),
-    Path("/Users/romanslavinsky/Desktop/aplus-marketing-skills/skills/aplus-b2c-brand-kit/ilead-outcomes-graphic.png"),
+    REPO_ROOT / "skills" / "aplus-b2b-brand-kit" / "ilead-outcomes-graphic.png",
+    REPO_ROOT / "skills" / "aplus-b2c-brand-kit" / "ilead-outcomes-graphic.png",
 ]
 
 
