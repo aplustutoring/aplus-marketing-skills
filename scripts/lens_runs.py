@@ -92,11 +92,13 @@ CONTEXT for this run:
 """.strip()
 
 
-# Regex to capture the "### Topic 1: ..." section through the next ### header or end
+# Tolerant Topic-1 capture: accept `### Topic 1:`, `### **Topic 1:**`, `### Topic 1.`,
+# `### Topic #1:`, `### 1.`, etc. Headline may be bold-wrapped.
 _TOPIC_1_BLOCK = re.compile(
-    r"###\s+Topic\s+1\s*:\s*(?P<headline>[^\n]+)\n(?P<body>.*?)(?=\n###\s|\n##\s|\Z)",
+    r"###\s+\*{0,2}\s*(?:Topic\s*#?\s*)?1\s*\*{0,2}\s*[:.—\-]+\s*\*{0,2}\s*(?P<headline>[^\n]+?)\*{0,2}\s*\n(?P<body>.*?)(?=\n###\s|\n##\s|\Z)",
     re.DOTALL | re.IGNORECASE,
 )
+# Field rows like `- **Category:** B` or `- **Source(s) to verify ⚠:**`
 _FIELD_RE = re.compile(
     r"^-\s+\*\*(?P<key>[^:*]+?):?\*\*\s*(?P<value>.+?)(?=\n-\s+\*\*|\Z)",
     re.MULTILINE | re.DOTALL,
@@ -155,7 +157,12 @@ def run_lens(lens: Lens, runner: SkillsRunner, context: str) -> LensRunResult:
     skill_result = runner.run_skill("aplus-research", prompt)
     topic = parse_topic_1(skill_result.text, source_lens=lens.name)
     if topic is None:
-        logger.warning("lens_parse_failed name=%s — Topic 1 block not found in output", lens.name)
+        # Dump the start of the skill output so future failures are debuggable
+        preview = skill_result.text[:600].replace("\n", " | ")
+        logger.warning(
+            "lens_parse_failed name=%s — Topic 1 block not found. Output preview: %s",
+            lens.name, preview,
+        )
         return LensRunResult(lens=lens, topic=None, skill_result=skill_result, parse_failed=True)
     logger.info("lens_ok name=%s topic=%r", lens.name, topic.headline[:60])
     return LensRunResult(lens=lens, topic=topic, skill_result=skill_result)
@@ -211,4 +218,17 @@ Two big signals this week.
     assert "47%" in parsed.headline
     assert parsed.roman_take.startswith("What CDE")
     assert parsed.danielle_take.startswith("Here is what")
-    print("\nALL ASSERTIONS PASSED")
+
+    # Variant formats the model might use
+    variants = [
+        "### **Topic 1: Bold-wrapped headline lives here**\n- **Category:** A\n",
+        "### Topic 1. Period instead of colon\n- **Category:** B\n",
+        "### Topic #1: Hash mark variant\n- **Category:** C\n",
+        "### Topic 1 — Em-dash variant\n- **Category:** D\n",
+        "### 1. Just numbered no Topic word\n- **Category:** E\n",
+    ]
+    for v in variants:
+        p = parse_topic_1(v, source_lens="v")
+        assert p is not None, f"variant failed: {v[:50]!r}"
+        assert p.category in {"A", "B", "C", "D", "E"}, f"category bad in {v[:50]!r}"
+    print("\nALL ASSERTIONS PASSED (including 5 format variants)")

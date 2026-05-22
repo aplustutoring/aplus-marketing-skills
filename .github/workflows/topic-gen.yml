@@ -48,7 +48,7 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           HUBSPOT_PRIVATE_APP_TOKEN: ${{ secrets.HUBSPOT_PRIVATE_APP_TOKEN }}
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
-          APLUS_REFRESH_MODE: ${{ inputs.refresh && '1' || '0' }}
+          APLUS_REFRESH_MODE: ${{ inputs.refresh }}
         run: |
           ARGS=""
           if [ "${{ inputs.dry_run }}" = "true" ]; then
