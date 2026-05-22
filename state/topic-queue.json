@@ -4,44 +4,32 @@
     {
       "slot": 1,
       "lens": "policy_funding_hawk",
-      "headline": "California May Revision \u2014 what changes for independent study charters and intervention funding",
-      "category": "A (federal/state funding)",
+      "headline": "California May Revise signals flat categorical growth \u2014 Title III becomes the lever for LTEL services",
+      "category": "A",
       "sources": [],
-      "why_matters": "The May Revise sets the Prop 98 guarantee, LCFF base/supplemental rates, and any new/sunsetting categorical programs for the school year A+ is currently selling into. Every Tier A partner \u2014 especially the Sacramento cluster (Visions, Rio Valley, Heritage, Horizon) and the Sonoma cluster (Ocean Grove, Heartwood) \u2014 is rebuilding LCAPs against these numbers right now. A+ is one of the few intervention vendors that can read a May Revise and translate it into a school-level funding action.",
-      "angle": "\"Three line items in the May Revise that change how charters should plan intervention spending for 2026-27\" \u2014 concrete, school-facing, not a hot take.",
-      "roman_take": "The May Revise is a referendum on whether California still believes academic recovery is a real emergency \u2014 and the answer this year is \"sort of.\" Schools that wait for the state to fund urgency will keep waiting.",
-      "danielle_take": "Walk through exactly which line items in the May Revise map to Title III Immigrant, Equity Multiplier, and LCFF supplemental \u2014 and which ones charter directors should be moving on this month, not in August. ---",
-      "redundancy_max_similarity": 0.4506246410175672
+      "why_matters": "A+ has 5 active partners with confirmed Title III Immigrant receipts (Ocean Grove, South Sutter, Visions, Heartland, Pacific Coast Academy) and 18 partners that have never applied. When LCFF growth flattens, the question for special programs coordinators becomes \"what categorical funds am I leaving on the table?\" Danielle's existing pitch angle is now backed by the budget cycle itself.",
+      "angle": "\"Three Title III line items most NCB charters are underutilizing \u2014 and how to deploy them before the June obligation window.\"",
+      "roman_take": "Argue that the May Revise exposes a structural problem \u2014 California built its EL accountability system faster than it built the funding mechanisms to serve LTELs, and charter schools are stuck closing the gap with categorical scraps.",
+      "danielle_take": "Walk through the exact Title III Immigrant unspent-funds problem ($7,384 sitting at Community Collaborative, $3,813 at Cabrillo Point) and what a coordinator can do in the next 30 days to deploy or risk losing it.",
+      "redundancy_max_similarity": 0.44811125390406853
     },
     {
       "slot": 2,
-      "lens": "target_school_radar",
-      "headline": "Independent study charter oversight and the cost of being \"the easy school to cut\"",
-      "category": "C (Tier A partner cluster) with B (problem story) overlay",
-      "sources": [],
-      "why_matters": "Eight of A+'s 23 Tier A partners are independent study / NCB charters operating under AB 130 + AB 1316 oversight regimes. Every legislative session brings new pressure on this model. When oversight tightens, intervention documentation is the first thing auditors look at \u2014 and \"we contract with A+\" is a cleaner audit answer than \"we built it in-house.\" A+ is uniquely positioned to comment because we serve this exact charter type at scale.",
-      "angle": "Frame A+ as the intervention partner that makes independent study charters *more* auditable, not less. Lead with: \"When the oversight pendulum swings, charters with documented Tier 2/3 intervention plans sleep better.\" Include the count of NCB partners we serve without naming them.",
-      "roman_take": "The conviction angle is that independent study charters are doing the *harder* work of personalization and getting punished for it \u2014 and that outsourced, ESSA-tiered intervention is a moat against bad-faith oversight, not a luxury.",
-      "danielle_take": "The implementation angle is the documentation reality \u2014 what intervention paperwork actually survives a charter audit, and how A+'s reporting cadence (session logs, growth data, Title III/I alignment) maps to what auditors ask for.",
-      "redundancy_max_similarity": 0.39199868048891995
-    },
-    {
-      "slot": 3,
       "lens": "competitive_intel",
-      "headline": "The on-demand tutoring model is quietly failing districts \u2014 and procurement teams are noticing",
-      "category": "D (industry/competitor moves)",
+      "headline": "The post-ESSER vendor shakeout \u2014 who's still standing and why it matters for charter directors planning FY26\u201327",
+      "category": "D (with B undertones)",
       "sources": [],
-      "why_matters": "Every major on-demand/async tutoring vendor that raised at scale during ESSER is now visibly struggling to renew. The reason is structural, not operational: async tutoring fails the NSSA \"high-dosage\" definition (3+ sessions/week, same tutor, embedded in school day). A+'s scheduled, recurring, named-tutor model is the affirmative case study for what these vendors can't deliver. This is the rare moment when A+ can comment on a competitor category without naming names and still have the audience know exactly what's meant.",
-      "angle": "\"What districts learned the hard way about 'on-demand' intervention\" \u2014 frame the structural difference between availability and dosage, without naming vendors. Use NSSA's HIT criteria as the evidence backbone.",
-      "roman_take": "The conviction angle \u2014 districts bought a vending machine when they needed a relationship; the data was always going to catch up; this is what happens when education procurement gets seduced by tech metrics (utilization, sessions logged) instead of outcome metrics (reclassification, growth).",
-      "danielle_take": "The implementation angle \u2014 what she actually sees when a charter switches from an on-demand vendor to A+: the first 60 days are about students learning the tutor's name, schedule, and expectations. Dosage without consistency is just data. ---",
-      "redundancy_max_similarity": 0.41233666030745075
+      "why_matters": "Charter directors are right now writing FY26\u201327 intervention plans and getting cold-called by vendors who can't credibly say whether they'll exist in 18 months. A+ has operated continuously through ESSER ramp-up AND ESSER cliff because the funding model was never ESSER-dependent \u2014 it's Title I, Title III, and LCFF. This is the most defensible differentiation A+ has, and almost no one in the space is naming it out loud.",
+      "angle": "\"Three questions every charter director should ask a tutoring vendor before signing a FY26\u201327 contract\" \u2014 frame around funding-source durability, not pedagogy.",
+      "roman_take": "The ESSER-funded tutoring industry built a Ponzi scheme of scale on a deadline nobody wanted to look at. The companies imploding now told districts they were \"high-dosage\" when they were actually high-headcount and low-evidence.",
+      "danielle_take": "When a district loses a tutoring vendor mid-year, the kids who suffer first are LTELs and IEP-served students because their service plans assume continuity. Here's what a continuity-first vendor evaluation rubric actually looks like. ---",
+      "redundancy_max_similarity": 0.38675553470692625
     }
   ],
   "slack": {
     "channel_id": "C0B4K9K0162",
-    "message_ts": "1779422472.229129",
-    "posted_at": "2026-05-21T20:57:17.508619-07:00",
+    "message_ts": "1779426613.296519",
+    "posted_at": "2026-05-21T22:07:19.020556-07:00",
     "approval_deadline": "2026-05-25T07:00:00-07:00",
     "refresh_mode": false
   },
