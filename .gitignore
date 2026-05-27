@@ -23,3 +23,8 @@ state/*.lock
 
 # Embedding cache (rebuilt cheaply each CI run; would bloat repo)
 state/blog-embeddings.json
+
+# Case study Phase 1 — local-only files
+scripts/*.bak
+scripts/slack-case-study-usage.log
+scripts/hubspot-usage.log
