@@ -86,26 +86,21 @@ Generate into the bundle:
 
 ## Phase 4: Generate graphics
 
-The graphics scripts currently live per-bundle (copied from the Gabriela
-bundle as templates). For a new bundle, copy the six builders from the most
-recent case study bundle's `graphics/` folder into the new bundle's
-`graphics/` folder, update the `BUNDLE_DIR` path at the top of each, then run
-in this order:
+All six graphics builders are generalized scripts in scripts/ that take
+--bundle and read everything from metadata.md. No per-bundle copies, no
+path editing. Run from repo root, replacing {bundle} with the new bundle dir:
 
-```
-# From repo root. Replace {bundle} with the new bundle dir name.
-python3 aplus-content/{bundle}/graphics/_batch_v2.py            # hero + social card
-python3 aplus-content/{bundle}/graphics/_build_topic_graphic.py # milestone timeline (qualitative-led) — edit milestones for this case
-python3 aplus-content/{bundle}/graphics/_build_pull_quotes.py   # 2 pull quotes
-python3 aplus-content/{bundle}/graphics/_build_ig_carousel.py   # 5 IG slides
-python3 scripts/build-instagram-stories.py --bundle aplus-content/{bundle}/  # 3 story frames
-python3 aplus-content/{bundle}/graphics/_build_facebook.py      # FB share
-python3 scripts/composite-logo.py --bundle aplus-content/{bundle}/           # logos on all flat graphics
-```
+    python3 scripts/build-case-study-hero-card.py --bundle aplus-content/{bundle}/
+    python3 scripts/build-case-study-topic-graphic.py --bundle aplus-content/{bundle}/
+    python3 scripts/build-case-study-pull-quotes.py --bundle aplus-content/{bundle}/
+    python3 scripts/build-case-study-ig-carousel.py --bundle aplus-content/{bundle}/
+    python3 scripts/build-instagram-stories.py --bundle aplus-content/{bundle}/
+    python3 scripts/build-case-study-facebook.py --bundle aplus-content/{bundle}/
+    python3 scripts/composite-logo.py --bundle aplus-content/{bundle}/
 
 Notes:
-- Hero auto-varies by subject/grade/gender/ethnicity via `scripts/hero_scene.py`. No manual prompt editing needed.
-- `_build_topic_graphic.py` is bespoke per case (the milestone timeline data). Edit the milestones list to match THIS student's actual lesson-note progression before running.
+- Hero auto-varies by subject/grade/gender/ethnicity via scripts/hero_scene.py. No manual prompt editing.
+- The topic graphic reads its milestones list from metadata.md. Phase 2 must write that list (month | topic | verbatim_phrase per line) from the student's actual lesson-note progression.
 - After generation, visually spot-check the hero and pull quotes. Grammar gate + ethnicity + face-partial rules must hold.
 
 ## Phase 5: Publish to HubSpot (draft)
