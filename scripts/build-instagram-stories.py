@@ -233,9 +233,12 @@ def render_frame_3(headline, subhead, out_path):
             ys -= 4
 
     # Bottom instruction (placed safely above the logo zone)
-    ax.text(50, 22, "↑  Tap the link sticker above", ha="center", va="center",
-            fontfamily=BODY_FONT, fontsize=22, fontweight="bold",
-            color=ORANGE, alpha=0.95)
+    # ax.text removed (v2.4 case-study): link sticker is in posting checklist
+    _x = None  # placeholder (commented out original line below)
+    # ax.text(50, 22, "↑  Tap the link sticker above", ha="center", va="center",
+    #         fontfamily=BODY_FONT, fontsize=22, fontweight="bold",
+    #         color=ORANGE, alpha=0.95)
+    # Removed v2.4 case-study: link sticker handled via posting checklist
 
     # NO swipe indicator on frame 3 (final frame)
     fig.savefig(out_path, dpi=100, facecolor=NAVY, edgecolor="none",
@@ -324,7 +327,13 @@ def main():
     args = parser.parse_args()
 
     bundle = Path(args.bundle).resolve()
-    meta_path = bundle / "blog-anchor-meta.md"
+    # Smart detect: B2B uses blog-anchor-meta.md, case-study uses metadata.md
+    if (bundle / "blog-anchor-meta.md").exists():
+        meta_path = bundle / "blog-anchor-meta.md"
+    elif (bundle / "metadata.md").exists():
+        meta_path = bundle / "metadata.md"
+    else:
+        meta_path = bundle / "blog-anchor-meta.md"  # fall through to original error
     out_dir = bundle / "graphics"
     out_dir.mkdir(parents=True, exist_ok=True)
 

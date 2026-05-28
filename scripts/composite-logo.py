@@ -94,12 +94,24 @@ PER_CANVAS_CONFIG = {
     "linkedin-carousel-slide-3": dict(logo_width=140, anchor=(850, 1360)),
     "linkedin-carousel-slide-4": dict(logo_width=140, anchor=(830, 1360)),
     "linkedin-carousel-slide-5": dict(logo_width=140, anchor=(850, 1360)),
+    # Instagram carousel slide: 1024x1024 square (case studies, B2C)
+    "instagram-carousel-slide-1": dict(logo_width=120, anchor=(870, 870)),
+    "instagram-carousel-slide-2": dict(logo_width=120, anchor=(870, 870)),
+    "instagram-carousel-slide-3": dict(logo_width=120, anchor=(870, 870)),
+    "instagram-carousel-slide-4": dict(logo_width=120, anchor=(870, 870)),
+    "instagram-carousel-slide-5": dict(logo_width=120, anchor=(870, 870)),
+    # Facebook share: 1200x630 landscape (case-study, flat text-on-color)
+    "facebook": dict(logo_width=140, anchor=(1370, 460)),
+    # Facebook share: 1200x630 landscape (case-study, flat text-on-color)
+    "facebook": dict(logo_width=140, anchor=(1370, 460)),
 }
 
 # Files we explicitly do NOT process (photographic, or composed elsewhere)
 SKIP_PREFIXES = {
     "hero",
-    "facebook",
+    # "facebook" removed v2.4: case-study FB share is flat text-on-color, needs logo composited.
+    # B2B FB share was photographic and didn't need composite. If B2B uses photographic FB again,
+    # add per-bundle exclusion logic instead of re-adding here.
     "instagram-post",
     "instagram-story",  # both single and 3-frame: composited by build-instagram-stories.py
     "preset-stat-graphic",  # composited at brand-kit build time
