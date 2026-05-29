@@ -4,44 +4,32 @@
     {
       "slot": 1,
       "lens": "policy_funding_hawk",
-      "headline": "California May Revision 2026 \u2014 what charter intervention budgets actually lost (and what to do with the next 90 days)",
-      "category": "A (federal/state funding)",
+      "headline": "California May Revise \u2014 what the 2026-27 budget signals for charter intervention funding",
+      "category": "A (federal/state K-12 funding) \u2014 **lead topic from this lens**",
       "sources": [],
-      "why_matters": "Every Tier A partner is a California charter whose categorical and discretionary intervention dollars are downstream of the May Revise. The Revise is the single largest funding signal in the 14-day window and the document Danielle's prospects are reading right now. A+ is uniquely positioned to translate Revise line items into \"what this means for your Title I supplement-not-supplant calculus next school year\" \u2014 not the macro takes EdSource is doing, but the operator-level math.",
-      "angle": "A short, plainly-written breakdown of the three Revise line items that most affect intervention budgets at independent study charters, with a closing nudge that A+ can help model the next-year supplement budget. No politics; just translation.",
-      "roman_take": "Conviction angle \u2014 \"Every May the same conversation: directors read the Revise as a top-line number, panic, and then under-spend in fall because they're protecting cash. The cost of that caution is measurable. Here's the math.\"",
-      "danielle_take": "Implementation angle \u2014 \"Three calls I'm having this week with charter business managers about what's funded vs. unfunded for FY27 intervention plans. Here's the worksheet I'm using.\"",
-      "redundancy_max_similarity": 0.3358880156794098
+      "why_matters": "Every Tier A partner runs on a Prop 98 / LCFF base plus categorical layers (Title I, Title III, ELO-P, Learning Recovery Emergency Block Grant residuals). The May Revise is the single document that tells charter business managers and EDs whether their intervention budget for next year holds, grows, or shrinks. A+ sits in exactly the spend category that gets cut first when categoricals tighten and protected hardest when CDE flags intervention as priority. Danielle's pitch ROI changes depending on which categorical column the money lives in.",
+      "angle": "Translate the May Revise into one sentence per category that matters to charter intervention budgets \u2014 LCFF, Title I carryover, Title III, ELO-P, Learning Recovery. No politics, just \"here's what changed, here's what to ask your business manager Monday.\"",
+      "roman_take": "The conviction angle \u2014 *funded intervention works; underfunded intervention is theater.* Use the May Revise to argue that the schools who spend their categorical dollars on evidence-based, high-dosage tutoring outperform the ones who spread it thin across compliance line items.",
+      "danielle_take": "The implementation angle \u2014 a tactical checklist of \"if your May Revise allocation moved X direction, here are the three categorical lines you should re-examine before June board.\" Practical, dated, school-business-manager language.",
+      "redundancy_max_similarity": 0.3883030810356195
     },
     {
       "slot": 2,
-      "lens": "target_school_radar",
-      "headline": "Antelope Valley Learning Academy enters Year-2 CSI-Grad cycle inside the iLEAD network \u2014 what intervention infrastructure is actually moving the graduation indicator?",
-      "category": "C (with B undertones)",
-      "sources": [],
-      "why_matters": "CSI-Grad schools that don't move their indicator in Year 2 face escalating state oversight. AVLA sits inside a network A+ already serves \u2014 this is a content moment where A+ can demonstrate it understands the *operational* difference between \"we offer tutoring\" and \"we deliver an ESSA-aligned intervention with attendance, dosage, and outcome reporting that survives an LCAP audit.\" High differentiation potential.",
-      "angle": "Frame the structural problem: CSI-Grad designation isn't fixed by adding more tutors \u2014 it's fixed by tutoring that produces evidence the state will actually count. Tie to A+'s ESSA Tier 2 evidence base without naming AVLA directly (network sensitivity).",
-      "roman_take": "\"We keep meeting schools who think the CSI exit is a vendor problem. It's a measurement problem. Here's what changes when you treat intervention as an evidence pipeline, not a service contract.\"",
-      "danielle_take": "\"Three things I'd put on the next board agenda for any school in Year 2 of CSI-Grad \u2014 dosage minimums, attendance recovery integration, and quarterly indicator-tied reporting. None of them require new funding. All of them require a partner that can produce the data.\" ---",
-      "redundancy_max_similarity": 0.412313268258937
-    },
-    {
-      "slot": 3,
       "lens": "competitive_intel",
-      "headline": "AI tutoring pilots are hitting an LTEL-shaped wall \u2014 and nobody is talking about it",
-      "category": "D (primary) + B (secondary)",
+      "headline": "The post-ESSER intervention vendor collapse \u2014 and what districts losing their tutoring partner overnight should do next",
+      "category": "D (Industry/competitor moves), with strong overlap to B (K-12 problem stories) and A (funding)",
       "sources": [],
-      "why_matters": "Every competitor announcement this spring is AI-forward. None of them have a published reclassification outcome for LTELs. A+ has documented LTEL reclassification results from real Title III\u2013funded engagements at Ocean Grove, South Sutter, and Visions. This is the cleanest \"only A+ can say this\" topic available right now \u2014 a competitor lens story that lands exactly on A+'s deepest moat.",
-      "angle": "\"AI tutoring can drill vocabulary. It cannot reclassify an LTEL. Here's why the difference is showing up in pilot data.\"",
-      "roman_take": "Conviction piece \u2014 the intervention market is sorting itself into two lanes (AI for practice, humans for outcomes that get audited), and vendors pretending to do both are about to get exposed.",
-      "danielle_take": "Implementation reality \u2014 what a reclassification-targeted Title III engagement actually looks like week to week, and why no current AI product can replicate the documentation chain a CDE compliance review requires.",
-      "redundancy_max_similarity": 0.3433089398182225
+      "why_matters": "Every venture-backed tutoring vendor that scaled on ESSER dollars is now contracting, pulling contracts, or pivoting to B2C. A+ never took that money, never built a burn-rate-dependent model, and is funded through stable Title I / Title III / LCFF supplemental dollars routed through charter partners. This is the cleanest differentiation moment A+ has had since the company was founded \u2014 \"the vendors built for the sugar high are leaving the room; the vendors built for the work are still here.\" It also gives Danielle a direct outreach hook to any school whose previous tutoring vendor just walked.",
+      "angle": "Frame the shakeout factually (here's what's happening across the intervention vendor market), then position A+'s funding model and partner-embedded approach as the structural reason A+ is still standing. End with a soft call: if your previous tutoring partner just pulled out, here's what a Title-funded intervention partnership looks like.",
+      "roman_take": "\"We watched everyone chase ESSER. We chose Title I and Title III. Here's why that choice looks different in May 2026 than it did in May 2022.\" Conviction angle: the funding source you build on determines whether you're still operating when the music stops.",
+      "danielle_take": "\"When your previous tutoring vendor leaves, the first thing your kids lose isn't the sessions \u2014 it's the data continuity. Here's the implementation question every special programs coordinator should be asking the next vendor in the door.\" Implementation angle: vendor transition isn't a procurement problem, it's a student-progress problem.",
+      "redundancy_max_similarity": 0.4641259646920591
     }
   ],
   "slack": {
     "channel_id": "C0B4K9K0162",
-    "message_ts": "1780027256.817469",
-    "posted_at": "2026-05-28T20:56:41.137729-07:00",
+    "message_ts": "1780032042.283879",
+    "posted_at": "2026-05-28T22:17:21.203549-07:00",
     "approval_deadline": "2026-06-01T07:00:00-07:00",
     "refresh_mode": false
   },
