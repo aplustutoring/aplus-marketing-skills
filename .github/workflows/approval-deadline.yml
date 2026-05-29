@@ -42,7 +42,7 @@ jobs:
           if [ "${{ inputs.dry_run }}" = "true" ]; then
             ARGS="--dry-run"
           fi
-          python3 scripts/approval_deadline.py $ARGS
+          python3 scripts/b2b/approval_deadline.py $ARGS
 
       - name: Commit state changes
         if: ${{ inputs.dry_run != true }}

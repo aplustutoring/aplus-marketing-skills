@@ -57,7 +57,7 @@ jobs:
           if [ "${{ inputs.dry_run }}" = "true" ]; then
             ARGS="$ARGS --dry-run"
           fi
-          python3 scripts/topic_gen.py $ARGS
+          python3 scripts/b2b/topic_gen.py $ARGS
 
       - name: Commit state changes
         if: ${{ inputs.dry_run != true }}

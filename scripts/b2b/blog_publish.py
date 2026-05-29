@@ -36,6 +36,12 @@ from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from typing import Optional
 
+# Ensure shared helpers are importable after restructuring
+import sys as _sys
+_REPO_ROOT = Path(__file__).resolve().parent.parent
+_sys.path.insert(0, str(_REPO_ROOT / "scripts" / "shared"))
+_sys.path.insert(0, str(_REPO_ROOT / "scripts" / "b2b"))
+
 from dotenv import load_dotenv
 
 from seo_validators import ValidationIssue, validate_seo_fields
@@ -263,7 +269,7 @@ def write_bundle(bundle_dir: Path, body: str, meta_block_text: str, skill_result
 
 
 def shell_out_to_publish(bundle_dir: Path, dry_run: bool) -> int:
-    cmd = ["python3", str(REPO_ROOT / "scripts" / "publish-to-hubspot.py"), "--bundle", str(bundle_dir)]
+    cmd = ["python3", str(REPO_ROOT / "scripts" / "shared" / "publish-to-hubspot.py"), "--bundle", str(bundle_dir)]
     if dry_run:
         cmd.append("--dry-run")
     logger.info("invoking: %s", " ".join(cmd))
@@ -272,7 +278,7 @@ def shell_out_to_publish(bundle_dir: Path, dry_run: bool) -> int:
 
 
 def shell_out_to_slack(bundle_dir: Path, dry_run: bool) -> int:
-    cmd = ["python3", str(REPO_ROOT / "scripts" / "deliver-to-slack.py"), "--bundle", str(bundle_dir)]
+    cmd = ["python3", str(REPO_ROOT / "scripts" / "b2b" / "deliver-to-slack.py"), "--bundle", str(bundle_dir)]
     if dry_run:
         cmd.append("--dry-run")
     logger.info("invoking: %s", " ".join(cmd))

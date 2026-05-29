@@ -23,6 +23,10 @@ from dataclasses import asdict
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Optional
+import sys as _sys
+_REPO_ROOT = Path(__file__).resolve().parent.parent
+_sys.path.insert(0, str(_REPO_ROOT / "scripts" / "shared"))
+_sys.path.insert(0, str(_REPO_ROOT / "scripts" / "b2b"))
 
 import requests
 from dotenv import load_dotenv

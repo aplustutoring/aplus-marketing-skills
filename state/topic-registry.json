@@ -293,6 +293,36 @@
       "slot": "E",
       "title": "Layering Community-Based Tutoring Partnerships With Vendor Tier 3",
       "anchored": false
+    },
+    {
+      "date": "2026-05-27",
+      "slot": "A",
+      "title": "The May 19 Transferability/AFUA Letter and What It Unlocks for Charter Intervention Budgets",
+      "anchored": false
+    },
+    {
+      "date": "2026-05-27",
+      "slot": "B",
+      "title": "The May 31 CALPADS Reclassification Deadline. A Charter Director's Last-Week Checklist",
+      "anchored": false
+    },
+    {
+      "date": "2026-05-27",
+      "slot": "C",
+      "title": "IEP Implementation Portal Reporting. The New Compliance Surface for Charter LEAs",
+      "anchored": false
+    },
+    {
+      "date": "2026-05-27",
+      "slot": "D",
+      "title": "AB 2555 and the End of Discretionary EL Reclassification. Preparing for 2027-28 Now",
+      "anchored": false
+    },
+    {
+      "date": "2026-05-27",
+      "slot": "E",
+      "title": "NSSA's Five-Year Tutoring Retrospective. What's Settled and What's Still Open",
+      "anchored": false
     }
   ],
   "retired_candidates": [
@@ -301,6 +331,21 @@
       "proposed_count": 4,
       "retired_on": "2026-05-22",
       "reason": "Proposed 4 weeks running without anchoring. Resurrect only with a fresh news hook (e.g., USDE updated guidance, IES new brief)."
+    }
+  ],
+  "case_studies": [
+    {
+      "date": "2026-05-21",
+      "real_student_name": "Lehyana Keys",
+      "real_student_aliases": [
+        "Lehyana Estrada",
+        "Leanna"
+      ],
+      "published_pseudonym": "Gabriela",
+      "slug": "gabriela-ilead",
+      "school": "iLEAD Exploration",
+      "hubspot_post_id": "",
+      "status": "drafted"
     }
   ]
 }

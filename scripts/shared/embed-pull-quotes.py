@@ -324,11 +324,21 @@ def insert_figure_after_paragraph(html, anchor, image_url, alt_text):
     where a pull-quote graphic is capitalized (standalone) but the quote
     appears mid-sentence in the body prose with a lowercase first letter.
 
+    Bug fix 2026-05-21: HTML-escape both image_url and alt_text before
+    interpolating into the attribute values. Without escaping, an alt text
+    containing inner double quotes (e.g. `from "pull report this week"`)
+    would prematurely terminate the alt attribute and produce malformed
+    HTML where the rest of the alt text leaked into invented attributes
+    like pull="" report="" this="" week="".
+
     Returns (new_html, success_bool).
     """
+    import html as _html_module
+    safe_url = _html_module.escape(image_url, quote=True)
+    safe_alt = _html_module.escape(alt_text, quote=True)
     figure_html = (
         '<figure style="margin: 2.5em auto; text-align: center; max-width: 640px;">'
-        f'<img src="{image_url}" alt="{alt_text}" '
+        f'<img src="{safe_url}" alt="{safe_alt}" '
         'style="max-width: 100%; height: auto; display: block; margin: 0 auto;" />'
         "</figure>"
     )

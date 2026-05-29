@@ -24,7 +24,9 @@ from dotenv import load_dotenv
 
 REPO = Path(__file__).resolve().parents[1]
 load_dotenv(dotenv_path=REPO / ".env")
-sys.path.insert(0, str(REPO / "scripts"))
+# Ensure B2C and shared helpers are importable after restructuring
+sys.path.insert(0, str(REPO / "scripts" / "shared"))
+sys.path.insert(0, str(REPO / "scripts" / "b2c"))
 from hero_scene import build_hero_prompt, FACE_PARTIAL_CONSTRAINT
 
 GEMINI = os.environ.get("GEMINI_API_KEY")

@@ -47,7 +47,7 @@ Write these files into the bundle directory:
 
 Run the anonymization checker before proceeding:
 ```
-python3 scripts/check-anonymization.py --bundle aplus-content/{bundle}/
+python3 scripts/b2c/check-anonymization.py --bundle aplus-content/{bundle}/
 ```
 If it flags a real name in Document 1, FIX before continuing. Hard gate.
 
@@ -90,13 +90,13 @@ All six graphics builders are generalized scripts in scripts/ that take
 --bundle and read everything from metadata.md. No per-bundle copies, no
 path editing. Run from repo root, replacing {bundle} with the new bundle dir:
 
-    python3 scripts/build-case-study-hero-card.py --bundle aplus-content/{bundle}/
-    python3 scripts/build-case-study-topic-graphic.py --bundle aplus-content/{bundle}/
-    python3 scripts/build-case-study-pull-quotes.py --bundle aplus-content/{bundle}/
-    python3 scripts/build-case-study-ig-carousel.py --bundle aplus-content/{bundle}/
-    python3 scripts/build-instagram-stories.py --bundle aplus-content/{bundle}/
-    python3 scripts/build-case-study-facebook.py --bundle aplus-content/{bundle}/
-    python3 scripts/composite-logo.py --bundle aplus-content/{bundle}/
+   python3 scripts/b2c/build-case-study-hero-card.py --bundle aplus-content/{bundle}/
+   python3 scripts/b2c/build-case-study-topic-graphic.py --bundle aplus-content/{bundle}/
+   python3 scripts/b2c/build-case-study-pull-quotes.py --bundle aplus-content/{bundle}/
+   python3 scripts/b2c/build-case-study-ig-carousel.py --bundle aplus-content/{bundle}/
+   python3 scripts/b2c/build-instagram-stories.py --bundle aplus-content/{bundle}/
+   python3 scripts/b2c/build-case-study-facebook.py --bundle aplus-content/{bundle}/
+   python3 scripts/shared/composite-logo.py --bundle aplus-content/{bundle}/
 
 Notes:
 - Hero auto-varies by subject/grade/gender/ethnicity via scripts/hero_scene.py. No manual prompt editing.
@@ -106,7 +106,7 @@ Notes:
 ## Phase 5: Publish to HubSpot (draft)
 
 ```
-python3 scripts/publish-to-hubspot.py --bundle aplus-content/{bundle}/
+python3 scripts/shared/publish-to-hubspot.py --bundle aplus-content/{bundle}/
 ```
 Record the returned `post_id`. The post is a DRAFT — never auto-published.
 HubSpot publish is Roman + Danielle's Gate 2 decision.
@@ -125,8 +125,8 @@ Two scripts, in order. First the text bundle (header + Paola feedback +
 file list), then the graphics + captions pack.
 
 ```
-python3 scripts/deliver-case-study-to-slack.py --bundle aplus-content/{bundle}/ --post-id {post_id}
-python3 scripts/deliver-case-study-graphics-to-slack.py --bundle aplus-content/{bundle}/
+python3 scripts/b2c/deliver-case-study-to-slack.py --bundle aplus-content/{bundle}/ --post-id {post_id}
+python3 scripts/b2c/deliver-case-study-graphics-to-slack.py --bundle aplus-content/{bundle}/
 ```
 
 Both post to `#student-spotlight-ready`. The graphics script @mentions Paola.

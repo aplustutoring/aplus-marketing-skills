@@ -27,7 +27,9 @@ import re
 import argparse
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).parent))
+_REPO = Path(__file__).resolve().parents[1]
+# Ensure shared helpers are importable from scripts/shared
+sys.path.insert(0, str(_REPO / "scripts" / "shared"))
 import slack_delivery_common as sd
 
 CHANNEL = "#student-spotlight-ready"
