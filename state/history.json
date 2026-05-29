@@ -47,6 +47,22 @@
       "refresh_mode": false,
       "slack_channel": "C0B4K9K0162",
       "slack_ts": "1779426613.296519"
+    },
+    {
+      "ts": "2026-05-28T20:56:41.137729-07:00",
+      "kind": "topic_gen",
+      "week": "2026-05-28",
+      "lenses": [
+        "policy_funding_hawk",
+        "target_school_radar",
+        "competitive_intel"
+      ],
+      "topics_produced": 3,
+      "topics_rejected_redundant": 0,
+      "topics_posted": 3,
+      "refresh_mode": false,
+      "slack_channel": "C0B4K9K0162",
+      "slack_ts": "1780027256.817469"
     }
   ]
 }
